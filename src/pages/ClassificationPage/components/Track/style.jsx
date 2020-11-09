@@ -6,4 +6,5 @@ export const Title = styled.h3 `
     font-size: 1.5rem;
     padding-bottom: 10px;
     position: relative;
+    z-index: 0;
 `
