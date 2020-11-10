@@ -8,7 +8,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 
 import SecondModal from '../../../../components/Modal/secondModal';
 
-import {isAdmin, isAuthenticated} from '../../../../services/auth';
+import { isAuthenticated} from '../../../../services/auth';
 
 import { Overflow, TableContent, Line, BestLap, Driver, Button} from './style';
 
@@ -66,7 +66,7 @@ const Table = ({ load, deleteClassification, drivers, updateClassification }) =>
                                     <td>{rating.trialTime}</td>
                                     <td>{rating.points}</td>
                                     {
-                                        isAuthenticated && isAdmin?
+                                        isAuthenticated()?
                                         <td><Button color={"edit"} onClick={() => update(rating, rating.driver)}><FontAwesomeIcon icon={faEdit} size="2x" /></Button> <Button color={"delete"} onClick={() => remove(rating._id)}><FontAwesomeIcon icon={faTrashAlt} size="2x" /></Button></td>
                                         : ""
                                     }

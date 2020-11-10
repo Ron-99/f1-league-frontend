@@ -22,7 +22,7 @@ const HomePage = () => (
                         <FontAwesomeIcon icon={faDiscord} />
                     </IconDiscord>
                     
-                    <IconWhatsapp>
+                    <IconWhatsapp href="https://chat.whatsapp.com/CKbymTMiP7r6LURlNbHQnI" target="_blank">
                         <FontAwesomeIcon icon={faWhatsapp} />
                     </IconWhatsapp>
                 </Icons>

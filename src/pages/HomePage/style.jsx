@@ -31,6 +31,7 @@ export const Title = styled.div `
         padding-bottom: 2%;
         font-size: 4rem;
         text-align: center;
+        color: #b91e1e;
         @media (max-width: 768px) {
             font-size: 2.5rem;
         }

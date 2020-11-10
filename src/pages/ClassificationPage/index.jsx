@@ -6,7 +6,7 @@ import Modal from '../../components/Modal';
 import SecondModal from '../../components/Modal/secondModal'
 
 import api from '../../services/api';
-import {isAuthenticated, isAdmin} from '../../services/auth';
+import {isAuthenticated} from '../../services/auth';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -167,7 +167,7 @@ const ClassificationPage = () => {
             <Filter ranks={ranks} seasons={seasons} setRank={setRank} loadSeason={loadSeasons} setSeason={setSeason} />
 
             {
-                isAuthenticated && isAdmin ?
+                isAuthenticated() ?
                 <New onClick={() => {setShow(true); setEdit(false);}}>
                     <FontAwesomeIcon icon={faPlus} size="2x" />
                 </New>

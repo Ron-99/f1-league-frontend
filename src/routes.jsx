@@ -41,7 +41,7 @@ const Routes = () => (
             <Route path='/classification/team' component={ClassificationTeamPage} />
             {
 
-                !isAuthenticated
+                !isAuthenticated()
                     ?
                     <Route path='/login' component={LoginPage} />
                     :
