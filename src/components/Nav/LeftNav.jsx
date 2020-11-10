@@ -1,9 +1,13 @@
 import React from 'react';
 
+import { useHistory } from "react-router-dom";
+import { isAuthenticated, logout } from '../../services/auth';
+
 import { Item, Ul, Right, Left, Logout } from './style';
-import {isAuthenticated, logout} from '../../services/auth';
 
 const LeftNav = ({ home, open }) => {
+
+    const history = useHistory();
 
     return (
         <Ul open={open}>
@@ -28,9 +32,9 @@ const LeftNav = ({ home, open }) => {
 
             <Right>
                 {
-                isAuthenticated?
+                isAuthenticated()?
                 <li>
-                    <Logout home={home} open={open} onClick={logout}>Sair</Logout>
+                    <Logout home={home} open={open} onClick={() => {logout(); history.push('/');}}>Sair</Logout>
                 </li>
                 :
                 <li>
