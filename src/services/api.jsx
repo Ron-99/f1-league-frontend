@@ -3,7 +3,7 @@ import axios from 'axios'
 import {getToken} from './auth';
 
 const api = axios.create({
-    baseURL: "http://localhost:8080"
+    baseURL: "https://api.e-racebrasil.com.br/"
 });
 
 api.interceptors.request.use(async config => {
