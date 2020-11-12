@@ -17,13 +17,13 @@ const LeftNav = ({ home, open }) => {
                     <Item home={home} open={open} exact to="/" activeStyle={{ fontWeight: '600' }}>Início</Item>
                 </li>
                 <li>
-                    <Item home={home} open={open} exact to="/classification" activeStyle={{ fontWeight: '600' }}>Classificação</Item>
+                    <Item home={home} open={open} exact to="/classification" activeStyle={{ fontWeight: '600' }}>Corridas</Item>
                 </li>
                 <li>
-                    <Item home={home} open={open} to="/classification/driver" activeStyle={{ fontWeight: '600' }}>Tabela de Pilotos</Item>
+                    <Item home={home} open={open} to="/classification/driver" activeStyle={{ fontWeight: '600' }}>Classificação</Item>
                 </li>
                 <li>
-                    <Item home={home} open={open} to="/classification/team" activeStyle={{ fontWeight: '600' }}>Tabela de Equipes</Item>
+                    <Item home={home} open={open} to="/classification/team" activeStyle={{ fontWeight: '600' }}>Construtores</Item>
                 </li>
                 <li>
                     <Item home={home} open={open} to="/driver" activeStyle={{ fontWeight: '600' }}>Pilotos</Item>
