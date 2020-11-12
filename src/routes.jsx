@@ -13,27 +13,31 @@ import ClassificationDriverPage from './pages/ClassificationDriverPage';
 import ClassificationTeamPage from './pages/ClassificationTeamPage';
 import LoginPage from './pages/LoginPage';
 import NotFound from './pages/NotFound';
+import Footer from './components/Footer';
 
 const HeaderCustom = () => {
     const location = useLocation().pathname;
 
     return (
-        <Route
-            render={() =>
-                location === "/" ? (
-                    <HomePage />
-                ) : (
-                        <Nav />
-                    )
-            }
-        />
+        location === "/" ? "" :
+        <Nav />
     )
 };
+
+const FooterCustom = () => {
+    const location = useLocation().pathname;
+
+    return(
+        location === "/" ? "" :
+        <Footer />
+    )
+}
 
 const Routes = () => (
     <BrowserRouter>
         <HeaderCustom />
         <Switch>
+            <Route exact path='/' component={HomePage} />
             <Route exact path='/classification' component={ClassificationPage} />
             <Route exact path='/driver' component={DriversPage} />
             <Route path='/driver/:id' component={DriverPage} />
@@ -47,10 +51,11 @@ const Routes = () => (
                     :
                     ""
             }
+            <Route path='*' component={NotFound} />
 
 
         </Switch>
-
+        <FooterCustom />
         
     </BrowserRouter>
 );
