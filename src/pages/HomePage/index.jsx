@@ -4,7 +4,10 @@ import Nav from '../../components/Nav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiscord, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
-import {Body, Box, Home, IconDiscord, Icons, Title, IconWhatsapp} from './style';
+import {Body, Box, Home, Title} from './style';
+import {Icons, Icon} from '../../components/Icons/style';
+
+import Footer from '../../components/Footer';
 
 const HomePage = () => (
     <Home >
@@ -18,15 +21,17 @@ const HomePage = () => (
                 <h3>Venha Participar!!!</h3>
 
                 <Icons>
-                    <IconDiscord href="https://discord.gg/QzVPRXt" target="_blank">
+                    <Icon colorHover={"#7289DA"} color={"#fff"} href="https://discord.gg/QzVPRXt" target="_blank">
                         <FontAwesomeIcon icon={faDiscord} />
-                    </IconDiscord>
+                    </Icon>
                     
-                    <IconWhatsapp href="https://chat.whatsapp.com/CKbymTMiP7r6LURlNbHQnI" target="_blank">
+                    <Icon colorHover={"#25D366"} color={"#fff"} href="https://chat.whatsapp.com/CKbymTMiP7r6LURlNbHQnI" target="_blank">
                         <FontAwesomeIcon icon={faWhatsapp} />
-                    </IconWhatsapp>
+                    </Icon>
                 </Icons>
             </Body>
+
+            <Footer home={true}/>
         </Box>
     </Home>
 );

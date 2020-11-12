@@ -16,7 +16,6 @@ export const Box = styled.div `
     flex-direction: column;
     width: 100%;
     height: 90vh;
-    text-transform: uppercase;
     color: #fff;
     font-family: 'Staatliches', cursive;
 `
@@ -32,6 +31,7 @@ export const Title = styled.div `
         font-size: 4rem;
         text-align: center;
         color: #b91e1e;
+        text-transform: uppercase;
         @media (max-width: 768px) {
             font-size: 2.5rem;
         }
@@ -46,6 +46,7 @@ export const Body = styled.div `
     flex-direction: column;
     height: 70vh;
     width: 100%;
+    text-transform: uppercase;
     h2{
         display: flex;
         align-items: flex-end;
@@ -64,33 +65,5 @@ export const Body = styled.div `
         @media (max-width: 768px) {
             font-size: 1rem;
         }
-    }
-`
-
-export const Icons = styled.div `
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 30vh;
-`
-
-export const Icon = styled.a `
-    font-size: 40px;
-    margin: 0 10px;
-    color: #fff;
-    cursor: pointer;
-    transition: 0.3s;
-`
-
-export const IconDiscord = styled(Icon) `
-    &:hover{
-        color: #7289DA;
-    }
-`
-
-export const IconWhatsapp = styled(Icon) `
-    &:hover{
-        color: #25D366;
     }
 `

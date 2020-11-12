@@ -1,8 +1,13 @@
 import React from 'react';
 
+import {NotFoundStyle} from './style';
 
 const NotFound = () => (
-    <h1>404 Not Found</h1>
+    <NotFoundStyle>
+        <h1>404</h1>
+        <h2>Página não encontrada</h2>
+    </NotFoundStyle>
+   
 )
 
 export default NotFound;

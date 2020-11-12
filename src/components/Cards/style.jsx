@@ -6,13 +6,21 @@ export const List = styled.div`
     grid-template-columns: auto auto auto auto;
     width: 80%;
     gap: 1%;
-    margin: 20px auto 0;
+    margin: 20px auto 50px;
     padding: 0 20px;
 
     @media (max-width: 768px) {
         grid-template-columns: auto auto;
         width: 90%;
         flex-flow: column nowrap;
+    }
+
+    @media (max-width: 640px) {
+        grid-template-columns: auto;
+        width: 95%;
+        flex-flow: column nowrap;
+        gap: 0;
+        padding: 1%;
     }
 
     article{

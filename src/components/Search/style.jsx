@@ -9,7 +9,7 @@ export const SearchStyle = styled.div`
 
     input{
         width: 80%;
-        height: 5vh;
+        height: 50px;
         border: 1px solid #ccc;
         border-radius: 5px;
         outline: none;
