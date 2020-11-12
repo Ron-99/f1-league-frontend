@@ -2,7 +2,7 @@ import React, {useState, useMemo, useCallback, useEffect} from 'react';
 import DataListInput from "react-datalist-input";
 
 import useInput from '../Input'
-
+import { useAlert } from 'react-alert'
 
 import {Fields, ModalBody, ModalContent, ModalFooter, ModalForm, ModalHeader, Field} from './style';
 
@@ -13,6 +13,7 @@ const SecondModal = ({show, setShow, title, drivers, track, date, createClassifi
     const [bestTime, inputBestTime, setBestTime] = useInput({type: 'mask', id: 'bestTime', name: 'bestTime', mask: '9:99,999'});
     const [trialTime, inputTrialTime, setTrialTime] = useInput({type: 'mask', id: 'trialTime', name: 'trialTime', mask: '9:99:99,999'});
     const [driver, setDriver] = useState('');
+    const alert = useAlert();
 
     useEffect(() => {
         load();
@@ -41,7 +42,7 @@ const SecondModal = ({show, setShow, title, drivers, track, date, createClassifi
 
     const save = async () => {
         
-        if(position && points && driver){
+        if(position !== '' && points !== '' && driver !== ''){
             const data = {
                 position: parseInt(position),
                 idTrack: track || rating.track._id,
@@ -51,12 +52,13 @@ const SecondModal = ({show, setShow, title, drivers, track, date, createClassifi
                 trialTime: trialTime ? trialTime : bestTime ? "NC" : "DNS",
                 idDriver: driver.key || driver
             }
-            console.log(isEdit);
             
             if(!isEdit)
                 await createClassification(data);
             else
                 await updateClassification(rating._id, data);
+        }else{
+            alert.show('Por favor preencha todos os campos');
         }
     }
 

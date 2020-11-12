@@ -4,6 +4,7 @@ import DateFilter from './components/DateFilter';
 import Table from './components/Table'
 import Modal from '../../components/Modal';
 import SecondModal from '../../components/Modal/secondModal'
+import { useAlert } from 'react-alert'
 
 import api from '../../services/api';
 import {isAuthenticated} from '../../services/auth';
@@ -38,6 +39,7 @@ const ClassificationPage = () => {
     const [show, setShow] = useState(false);
     const [showSecond, setShowSecond] = useState(false);
     const [dateModal,setDateModal] = useState('');
+    const alert = useAlert();
 
     useEffect(() => {
         loadDates();
@@ -130,20 +132,26 @@ const ClassificationPage = () => {
         }
     }
 
-    const createClassification = async (data) =>{
+    const createClassification = async (classi) =>{
         try{
-            await api.post(`/classification`, data);
+            const {data, status} = await api.post(`/classification`, classi);
+            if(status === 201)
+                alert.success(data.message);
+
             await loadClassification();
         }catch(err){
             console.error(err);
         }
     }
 
-    const updateClassification = async (id, data) =>{
+    const updateClassification = async (id, classi) =>{
         try{
-            await api.put(`/classification/${id}`, data);
+            const {data, status} = await api.put(`/classification/${id}`, classi);
+
+            if(status === 200)
+                alert.success(data.message);
+
             await loadClassification();
-            console.log('aqui')
         }catch(err){
             console.error(err);
         }
@@ -151,7 +159,10 @@ const ClassificationPage = () => {
 
     const deleteClassification = async (id) => {
         try{
-            await api.delete(`/classification/${id}`);
+            const {data, status} = await api.delete(`/classification/${id}`);
+            if(status === 200)
+                alert.success(data.message);
+
             await loadClassification();
         }catch(e){
             console.error(e);

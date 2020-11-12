@@ -28,12 +28,12 @@ export const Title = styled.div `
     width: 100%;
     h1{
         padding-bottom: 2%;
-        font-size: 4rem;
+        font-size: 5rem;
         text-align: center;
-        color: #b91e1e;
+        color: dodgerblue;
         text-transform: uppercase;
         @media (max-width: 768px) {
-            font-size: 2.5rem;
+            font-size: 3rem;
         }
     }
     

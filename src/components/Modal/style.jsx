@@ -85,7 +85,7 @@ export const Field = styled.div `
         font-weight: 400;
     }
     input{
-        width: 90%;
+        width: 100%;
         height: 10px;
         border: 1px solid #ccc;
         border-radius: 5px;
@@ -132,5 +132,36 @@ export const ModalFooter = styled.div `
     .finish:hover{
         background: #7bed9f;
         color: #000;
+    }
+`
+
+export const Button = styled.div `
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    margin: 5% 0 0 0;
+`
+
+export const New = styled.button `
+    width: 25px;
+    height: 25px;
+    background:#30be6b;
+    color: #fff;
+    font-size: 7px;
+    transition: 0.3s;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover{
+        background: #7bed9f;
+    }
+`
+
+export const Minus = styled(New)`
+    background: red;
+    margin: 0 0 0 5px;
+
+    &:hover{
+        background: red;
     }
 `
