@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 
 import DateFilter from './components/DateFilter';
+
+import { Date } from './components/DateFilter/style';
+
 import Table from './components/Table'
 import Modal from '../../components/Modal';
 import SecondModal from '../../components/Modal/secondModal'
 import { useAlert } from 'react-alert'
 
 import api from '../../services/api';
-import {isAuthenticated} from '../../services/auth';
+import { isAuthenticated } from '../../services/auth';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
-import {New} from './style';
+import { New } from './style';
 
 import * as moment from 'moment';
 import 'moment/locale/pt-br';
@@ -38,155 +41,167 @@ const ClassificationPage = () => {
     const [edit, setEdit] = useState(false);
     const [show, setShow] = useState(false);
     const [showSecond, setShowSecond] = useState(false);
-    const [dateModal,setDateModal] = useState('');
+    const [page, setPage] = useState(0);
+    const [dateModal, setDateModal] = useState('');
+
     const alert = useAlert();
 
     useEffect(() => {
-        loadDates();
         loadRanks();
+        loadDates();
         loadTracks();
         loadDrivers();
         loadClassification();
-    },[date,season, rank])
+    }, [rank, date])
 
     const loadClassification = async () => {
         moment.locale('pt-br');
-        
-        try{
-            
-            if(date && rank && season){
-                const {data} = await api.get(`/classification?date=${date}&rank=${rank}&season=${season}`);
+
+        try {
+
+            if (date !== '' && rank !== '' ) {
+
+                console.log(date)
+                const { data } = await api.get(`/classification?date=${date}&rank=${rank}&season=1`);
                 setClassification(data);
-                setTrackLabel(data[0].track.name);
+                if (data.length !== 0) {
+                    setTrackLabel(data[0].track.name);
+                }
+
             }
-        }catch(err){
+        } catch (err) {
             console.error(err);
         }
     }
 
     const loadDates = async () => {
         moment.locale('pt-br');
-        try{
-            const {data} = await api.get(`/classification/dates?rank=F1`);
-            setDates(data);
+        try {
+            if (rank !== '') {
 
-            if(!date)
-                setDateLabel(moment(data[0].substr(0, 10)).format('LL'));
-            else
-                setDateLabel(moment(date.substr(0, 10)).format('LL'))
+                const { data } = await api.get(`/classification/dates?rank=${rank}`);
+                setDates(data);
 
-            if(!date)
-                setDate(data[0].substr(0, 10));
-        }catch(err){
+                    
+                
+                setDateLabel(moment(data[page].substr(0, 10)).format('LL') || '');
+                
+            
+                setDate(data[page].substr(0, 10) || '');
+            }
+
+        } catch (err) {
             console.error(err);
         }
     }
 
     const loadRanks = async () => {
-        try{
-            const {data} = await api.get(`/rank`);
-
-            if(!rank)
+        try {
+            if(rank === '' && ranks.length === 0){
+                const { data } = await api.get(`/rank`);
                 setRank(data[0].name);
-
-            setRanks(data);
-
-            if(!rank)
+                setRanks(data);
+                
                 loadSeasons(data[0]._id);
-        }catch(err){
+            }
+
+            
+        } catch (err) {
             console.error(err);
         }
     }
 
     const loadSeasons = async (idRank) => {
-        try{
-            const {data} = await api.get(`/rank/season/${idRank}`)
+        try {
+            if (idRank !== '') {
+                const { data } = await api.get(`/rank/season/${idRank}`)
 
-            setSeasons(data);
-            
+                setSeasons(data);
 
-            setSeason(data[0].number.toString());
-                
-                
-            
-        }catch(err){
+                setSeason(data[0].number.toString());
+            }
+
+
+
+        } catch (err) {
             console.error(err);
         }
     }
 
     const loadTracks = async () => {
-        try{
-            const {data} = await api.get(`/track`);
+        try {
+            const { data } = await api.get(`/track`);
             setTracks(data);
-        }catch(err){
+        } catch (err) {
             console.error(err);
         }
     }
 
     const loadDrivers = async () => {
-        try{
-            const {data} = await api.get(`/driver`);
+        try {
+            const { data } = await api.get(`/driver`);
             setDrivers(data);
-        }catch(err){
+        } catch (err) {
             console.error(err)
         }
     }
 
-    const createClassification = async (classi) =>{
-        try{
-            const {data, status} = await api.post(`/classification`, classi);
-            if(status === 201)
+    const createClassification = async (classi) => {
+        try {
+            const { data, status } = await api.post(`/classification`, classi);
+            if (status === 201)
                 alert.success(data.message);
 
             await loadClassification();
-        }catch(err){
+        } catch (err) {
             console.error(err);
         }
     }
 
-    const updateClassification = async (id, classi) =>{
-        try{
-            const {data, status} = await api.put(`/classification/${id}`, classi);
+    const updateClassification = async (id, classi) => {
+        try {
+            const { data, status } = await api.put(`/classification/${id}`, classi);
 
-            if(status === 200)
+            if (status === 200)
                 alert.success(data.message);
 
             await loadClassification();
-        }catch(err){
+        } catch (err) {
             console.error(err);
         }
     }
 
     const deleteClassification = async (id) => {
-        try{
-            const {data, status} = await api.delete(`/classification/${id}`);
-            if(status === 200)
+        try {
+            const { data, status } = await api.delete(`/classification/${id}`);
+            if (status === 200)
                 alert.success(data.message);
 
             await loadClassification();
-        }catch(e){
+        } catch (e) {
             console.error(e);
         }
     }
 
     return (
         <>
-            <Modal show={show} setShow={setShow} tracks={tracks} setTrack={setTrack} setDate={setDateModal} setShowSecond={setShowSecond}/>
-            <SecondModal title={"Cadastrar Classificação"} show={showSecond} setShow={setShowSecond} drivers={drivers} track={track} date={dateModal} createClassification={createClassification}  rating={rating} driverEdit={driver} isEdit={edit} />
-            <DateFilter setDates={setDates} dates={dates} setDate={setDate} date={dateLabel} setDateLabel={setDateLabel}/>
-            <Track track={trackLabel}/>
-            <Filter ranks={ranks} seasons={seasons} setRank={setRank} loadSeason={loadSeasons} setSeason={setSeason} />
+            <Modal show={show} setShow={setShow} tracks={tracks} setTrack={setTrack} setDate={setDateModal} setShowSecond={setShowSecond} />
+            <SecondModal title={"Cadastrar Classificação"} show={showSecond} setShow={setShowSecond} drivers={drivers} track={track} date={dateModal} createClassification={createClassification} rating={rating} driverEdit={driver} isEdit={edit} />
+
+            <DateFilter date={date} setPage={setPage} page={page} date={date} dateLabel={dateLabel} dates={dates} setDate={setDate} setDateLabel={setDateLabel} setDates={setDates} />
+            <Track track={trackLabel} />
+            <Filter setPage={setPage} ranks={ranks} seasons={seasons} setRank={setRank} loadSeason={loadSeasons} setSeason={setSeason} />
 
             {
                 isAuthenticated() ?
-                <New onClick={() => {setShow(true); setEdit(false);}}>
-                    <FontAwesomeIcon icon={faPlus} size="2x" />
-                </New>
-                :
-                ""
+                    <New onClick={() => { setShow(true); setEdit(false); }}>
+                        <FontAwesomeIcon icon={faPlus} size="2x" />
+                    </New>
+                    :
+                    ""
             }
-            
-            <Table load={classification} updateClassification={updateClassification} drivers={drivers} deleteClassification={deleteClassification} setShow={setShowSecond} setRating={setRating} setDriver={setDriver} setEdit={setEdit}/>
+
+            <Table load={classification} updateClassification={updateClassification} drivers={drivers} deleteClassification={deleteClassification} setShow={setShowSecond} setRating={setRating} setDriver={setDriver} setEdit={setEdit} />
         </>
     )
 }

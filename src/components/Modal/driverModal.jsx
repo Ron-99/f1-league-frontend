@@ -14,7 +14,7 @@ import { Fields, ModalBody, ModalContent, ModalFooter, ModalForm, ModalHeader, F
 const DriverModal = ({ show, setShow, ranks, teams, title, isEdit, loadTeams }) => {
 
     const [name, nameInput, setName, refName] = useInput({ type: 'text', id: 'name', name: 'name' });
-    const [, rankInput, setRank] = useInput({ type: 'select', id: 'rank', name: 'rank', data: ranks });
+    const [rank, rankInput, setRank] = useInput({ type: 'select', id: 'rank', name: 'rank', data: ranks });
     const [equipe, equipeInput, setEquipe] = useInput({ type: 'text', name: 'team', id: 'team' });
     const [equipeId, setEquipeId] = useState('');
     const [team, setTeam] = useState('');
@@ -47,7 +47,7 @@ const DriverModal = ({ show, setShow, ranks, teams, title, isEdit, loadTeams }) 
 
             const driver = {
                 name: name,
-                idRank: rankInput.props.children[0].key,
+                idRank: rank || rankInput.props.children[0].key,
                 idTeam: equipeId || team.key
             }
 
