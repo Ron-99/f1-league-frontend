@@ -12,9 +12,7 @@ const LoginPage = () => {
 
     const entrar = async (form) => {
         try{
-            console.log(form)
             const {data} = await api.post(`/user/login`, form);
-            console.log(data);
             if(data){
                 login(data.token)
                 history.push("/");

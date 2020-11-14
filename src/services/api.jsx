@@ -2,9 +2,11 @@ import axios from 'axios'
 
 import {getToken} from './auth';
 
+// PRD
 const api = axios.create({
-    baseURL: "https://api.e-racebrasil.com.br/"
+    baseURL: "https://api.e-racebrasil.com.br"
 });
+
 
 api.interceptors.request.use(async config => {
     const token = getToken();
