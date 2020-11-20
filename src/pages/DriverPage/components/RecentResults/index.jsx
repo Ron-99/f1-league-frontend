@@ -9,25 +9,24 @@ const RecentResults = ({ races }) => {
     return (
         <>
             <TitleProfile>Resultados Recentes</TitleProfile>
-            <Overflow>
+            
                 <RecentResultsTable>
                     <tbody>
                         {
                             races.map(race => (
                                 <Line key={race._id} data-id={race._id} position={race.position}>
-                                    <td>{race.position}</td>
-                                    <BestLap bestLap={race.bestLap}>{race.bestTime}</BestLap>
-                                    <td>{race.trialTime}</td>
-                                    <td>{race.points}</td>
-                                    <td>{race.track.name}</td>
-                                    <td>{moment(race.date).format('LL')}</td>
-                                    <td>{race.rank}</td>
+                                    <td><span>Posição</span>{race.position}</td>
+                                    <BestLap bestLap={race.bestLap}><span>Melhor Volta</span>{race.bestTime}</BestLap>
+                                    <td><span>Tempo de Prova</span>{race.trialTime}</td>
+                                    <td><span>Pontos</span>{race.points}</td>
+                                    <td><span>Pista</span>{race.track.name}</td>
+                                    <td><span>Data</span>{moment(race.date).format('LL')}</td>
+                                    <td><span>Liga</span>{race.rank}</td>
                                 </Line>
                             ))
                         }
                     </tbody>
                 </RecentResultsTable>
-            </Overflow>
         </>
     )
 }
