@@ -52,7 +52,7 @@ export const TableContent = styled.table`
         vertical-align: middle;
         span{
             background: #eee;
-            color: dimgrey;
+            color: #333;
             display: none;
             font-size: 10px;
             font-weight: bold;
