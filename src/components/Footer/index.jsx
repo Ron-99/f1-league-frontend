@@ -18,7 +18,7 @@ const Footer = ({home}) => (
                 <FontAwesomeIcon icon={faGithub} />
             </Icon>
 
-            <Icon colorHover={"#6a737d"} color={home ? "#fff" :"#424242"} style={{fontSize: "25px"}} href="https://www.instagram.com/ron99__/?hl=pt-br" target="">
+            <Icon colorHover={"#6a737d"} color={home ? "#fff" :"#424242"} style={{fontSize: "25px"}} href="https://www.instagram.com/ron99__/?hl=pt-br" target="_blank">
                 <FontAwesomeIcon icon={faInstagram} />
             </Icon>
         </Icons>
