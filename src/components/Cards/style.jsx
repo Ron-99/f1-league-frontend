@@ -1,22 +1,32 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+export const Row = styled.div `
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+`
+
+export const Column = styled.div `
+    width: 45%;
+`
+
 export const List = styled.div`
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: 25% 25% 25% 25%;
     width: 80%;
     gap: 1%;
-    margin: 20px auto 50px;
+    margin: 20px auto 10%;
     padding: 0 20px;
 
     @media (max-width: 768px) {
-        grid-template-columns: auto auto;
+        grid-template-columns: 50% 50%;
         width: 90%;
         flex-flow: column nowrap;
     }
 
     @media (max-width: 640px) {
-        grid-template-columns: auto;
+        grid-template-columns: 100%;
         width: 95%;
         flex-flow: column nowrap;
         gap: 0;
@@ -63,6 +73,7 @@ export const Driver = styled(Link)`
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 
     &:hover{
         background: #ccc;

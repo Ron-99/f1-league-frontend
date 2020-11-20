@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import useInput from '../Input';
 import { Filtro, Filtros } from './style';
 
-const Filter = ({ranks, seasons, loadSeason, setRank, setSeason, setPage}) => {
+const Filter = ({ranks, seasons, loadSeason, setRank, setSeason, setPage, isRaces}) => {
 
     const [rank, rankInput, , rankRef] = useInput({type: 'select', id: 'rank', name: 'rank', data: ranks}) 
     const seasonRef = useRef('');
@@ -15,7 +15,9 @@ const Filter = ({ranks, seasons, loadSeason, setRank, setSeason, setPage}) => {
     const handleChangeRank = async () => {
         if(rankRef.current){
             setRank(rankRef.current.value || '');
-            setPage(0)
+
+            if(isRaces)
+                setPage(0)
             
             await loadSeason(rank);
         }

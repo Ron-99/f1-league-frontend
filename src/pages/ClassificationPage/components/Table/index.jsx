@@ -10,7 +10,7 @@ import SecondModal from '../../../../components/Modal/secondModal';
 
 import { isAuthenticated} from '../../../../services/auth';
 
-import { Overflow, TableContent, Line, BestLap, Driver, Button} from './style';
+import {Center, TableContent, Line, BestLap, Driver, Button} from './style';
 
 const Table = ({ load, deleteClassification, drivers, updateClassification }) => {
 
@@ -42,7 +42,7 @@ const Table = ({ load, deleteClassification, drivers, updateClassification }) =>
 
     return (
         <>
-            <Overflow>
+            <Center>
                 <TableContent>
                     <thead>
                         <tr>
@@ -59,12 +59,12 @@ const Table = ({ load, deleteClassification, drivers, updateClassification }) =>
                         {
                             load.map(rating => (
                                 <Line key={rating._id} data-id={rating._id} position={rating.position}>
-                                    <td>{rating.position}</td>
-                                    <td><Driver to={`/driver/${rating.driver._id}`}>{rating.driver.name}</Driver></td>
-                                    <td>{rating.driver.team[rating.driver.team.length - 1].name}</td>
-                                    <BestLap bestLap={rating.bestLap}>{rating.bestTime}</BestLap>
-                                    <td>{rating.trialTime}</td>
-                                    <td>{rating.points}</td>
+                                    <td><span>Posição</span>{rating.position}</td>
+                                    <td><span>Piloto</span><Driver to={`/driver/${rating.driver._id}`}>{rating.driver.name}</Driver></td>
+                                    <td><span>Equipe</span>{rating.driver.team[rating.driver.team.length - 1].name}</td>
+                                    <BestLap bestLap={rating.bestLap}><span>Melhor Tempo</span>{rating.bestTime}</BestLap>
+                                    <td><span>Tempo de Prova</span>{rating.trialTime}</td>
+                                    <td><span>Pontos</span>{rating.points}</td>
                                     {
                                         isAuthenticated()?
                                         <td><Button color={"edit"} onClick={() => update(rating, rating.driver)}><FontAwesomeIcon icon={faEdit} size="2x" /></Button> <Button color={"delete"} onClick={() => remove(rating._id)}><FontAwesomeIcon icon={faTrashAlt} size="2x" /></Button></td>
@@ -76,7 +76,7 @@ const Table = ({ load, deleteClassification, drivers, updateClassification }) =>
                         }
                     </tbody>
                 </TableContent>
-            </Overflow>
+            </Center>
 
             <SecondModal title={"Atualizar Classificação"} updateClassification={updateClassification} show={show} setShow={setShow} drivers={drivers} rating={classification} driverEdit={driver} isEdit={true} />
         </>

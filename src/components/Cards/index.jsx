@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {List, Driver} from './style';
+import {List, Driver, Row, Column} from './style';
 
 const Cards = ({ drivers, teams, isDrivers }) => (
     <List>
@@ -8,10 +8,18 @@ const Cards = ({ drivers, teams, isDrivers }) => (
             isDrivers ?
                 drivers.map(driver => (
                     <article key={driver._id}>
-                        <strong>{driver.name}</strong>
-                        <p>{driver.team[0].name}</p>
-
-                        <Driver to={`/driver/${driver._id}`}>Acessar</Driver>
+                        <Row>
+                            <strong>{driver.name}</strong>
+                            <strong>{driver.rank[0].name}</strong>
+                        </Row>
+                        
+                        <Row>
+                            <p>{driver.team[0].name}</p>
+                        </Row>
+                        
+                        <Row>
+                            <Driver to={`/driver/${driver._id}`}>Acessar</Driver>
+                        </Row>
                     </article>
                 ))
                 :

@@ -190,7 +190,7 @@ const ClassificationPage = () => {
 
             <DateFilter date={date} setPage={setPage} page={page} date={date} dateLabel={dateLabel} dates={dates} setDate={setDate} setDateLabel={setDateLabel} setDates={setDates} />
             <Track track={trackLabel} />
-            <Filter setPage={setPage} ranks={ranks} seasons={seasons} setRank={setRank} loadSeason={loadSeasons} setSeason={setSeason} />
+            <Filter isRaces={true} setPage={setPage} ranks={ranks} seasons={seasons} setRank={setRank} loadSeason={loadSeasons} setSeason={setSeason} />
 
             {
                 isAuthenticated() ?
