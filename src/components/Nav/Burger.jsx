@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import LeftNav from './LeftNav';
 import {StyledBurger} from './style'; 
 
-const Burger = ({home}) => {
+const Burger = ({home, theme, themeToggler}) => {
     const [open, setOpen] = useState(false)
     
     return (
@@ -13,7 +13,7 @@ const Burger = ({home}) => {
             <div />
             <div />
         </StyledBurger>
-        <LeftNav home={home} open={open}/>
+        <LeftNav home={home} open={open} theme={theme} themeToggler={themeToggler}/>
       </>
     )
 };

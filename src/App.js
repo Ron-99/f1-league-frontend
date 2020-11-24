@@ -19,7 +19,7 @@ function App() {
       <>
         <GlobalStyle />
         <div className="App">
-          <Routes />
+          <Routes themeToggler={themeToggler} theme={theme} />
         </div>
       </>
     </ThemeProvider>

@@ -10,10 +10,12 @@ export const SearchStyle = styled.div`
     input{
         width: 80%;
         height: 50px;
-        border: 1px solid #ccc;
         border-radius: 5px;
         outline: none;
         padding: 0 0 0 10px;
         font-size: 1.5rem;
+        background: ${({theme}) => theme.secondBackground};
+        box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
+        color: ${({theme}) => theme.text};
     }
 `

@@ -57,8 +57,8 @@ export const RecentResultsTable = styled.table `
         text-align: center;
         vertical-align: middle;
         span{
-            background: #eee;
-            color: dimgrey;
+            background-color: ${({theme}) => theme.toggleBorder};
+            color: ${({theme}) => theme.text};
             display: none;
             font-size: 10px;
             font-weight: bold;
@@ -113,7 +113,7 @@ export const RecentResultsTable = styled.table `
             text-align: left;
 
             &:nth-child(even){
-                background-color: #f2f2f2;
+                background-color: ${({theme}) => theme.secondBackground};
             }
 
             span {
