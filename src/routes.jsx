@@ -15,12 +15,12 @@ import LoginPage from './pages/LoginPage';
 import NotFound from './pages/NotFound';
 import Footer from './components/Footer';
 
-const HeaderCustom = () => {
+const HeaderCustom = ({themeToggler, theme}) => {
     const location = useLocation().pathname;
 
     return (
         location === "/" ? "" :
-        <Nav />
+        <Nav theme={theme} themeToggler={themeToggler}/>
     )
 };
 
@@ -33,11 +33,11 @@ const FooterCustom = () => {
     )
 }
 
-const Routes = () => (
+const Routes = ({themeToggler, theme}) => (
     <BrowserRouter>
-        <HeaderCustom />
+        <HeaderCustom themeToggler={themeToggler} theme={theme}/>
         <Switch>
-            <Route exact path='/' component={HomePage} />
+            <Route exact path='/' component={() => (<HomePage themeToggler={themeToggler} theme={theme} />)} />
             <Route exact path='/classification' component={ClassificationPage} />
             <Route exact path='/driver' component={DriversPage} />
             <Route path='/driver/:id' component={DriverPage} />

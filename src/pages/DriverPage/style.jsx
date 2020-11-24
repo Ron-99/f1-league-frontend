@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Profile = styled.div `
     margin: 2% 10%;
-    background: #f2f2f2;
+    background: ${({theme}) => theme.secondBackground};
     
 
     @media (max-width: 768px) {
@@ -15,7 +15,7 @@ export const ProfileHeader = styled.div `
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background: #424242;
+    background: ${({theme}) => theme.body};
     padding: 0 1%;
     height: 200px;
     border-radius: 5px;

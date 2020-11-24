@@ -8,12 +8,12 @@ export const Date = styled.div `
 
     h3{
         font-size: 1.4rem;
-        color:#636e72;
+        color: ${({ theme }) => theme.text};
         margin: 0 3%;
     }
 
     .arrow{
-        color: #747d8c;
+        color: ${({theme}) => theme.text};
         transition: 0.3s;
         cursor: pointer;
         font-size: 12px;

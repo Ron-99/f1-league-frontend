@@ -52,7 +52,12 @@ const Table = ({ load, deleteClassification, drivers, updateClassification }) =>
                             <th>Melhor Tempo</th>
                             <th>Tempo de Prova</th>
                             <th>Pontos</th>
-                            <th></th>
+                            {
+                                        isAuthenticated()?
+                                            <th></th>
+                                        :
+                                            ""
+                            }
                         </tr>
                     </thead>
                     <tbody>

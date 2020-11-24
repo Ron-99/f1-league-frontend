@@ -10,6 +10,7 @@ export const FooterStyle = styled.div`
 `
 
 export const Copy = styled.div `
+    color: ${({theme}) => theme.text};
     margin: 0.5% 0;
 `
 

@@ -9,9 +9,9 @@ import {Icons, Icon} from '../../components/Icons/style';
 
 import Footer from '../../components/Footer';
 
-const HomePage = () => (
+const HomePage = ({theme, themeToggler}) => (
     <Home >
-        <Nav home={true}/>
+        <Nav home={true} theme={theme} themeToggler={themeToggler}/>
         <Box>
             <Title>
                 <h1>E-Race Brasil</h1>
