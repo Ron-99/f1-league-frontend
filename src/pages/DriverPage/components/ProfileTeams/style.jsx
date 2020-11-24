@@ -10,7 +10,7 @@ export const PastTeam = styled.div `
 
 export const TitleProfile = styled.h1 `
     margin: 2% 1.5% 1% 1.5%;
-    color: #424242;
+    color: ${({ theme }) => theme.text};
     font-size: 0.8rem;
     font-weight: bold;
     text-transform: uppercase;
@@ -23,15 +23,16 @@ export const Overflow = styled.div `
 export const TeamsTable = styled.table `
     width: 98%;
     border-collapse: collapse;
-    color: #636e72;
+    color: ${({ theme }) => theme.text};
     font-family: 'roboto';
     font-weight: 400;
     margin: 1%;
-    box-shadow: 2px 4px 8px 2px rgba(185, 185, 185, 0.5);
+    box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.5);
     transition: 0.5s;
-    background: #ffffff;
-    border:2px solid rgba(185, 185, 185, 0.5);
+    background: ${({theme}) => theme.background};
+    /* border:2px solid rgba(185, 185, 185, 0.5); */
     margin-bottom: 6%;
+    background: ${({theme}) => theme.background};
 
     &:hover{
         box-shadow: 4px 8px 16px 4px rgba(0,0,0,0.5);
@@ -41,14 +42,14 @@ export const TeamsTable = styled.table `
         height: 60px;
 
         &:nth-child(even){
-            background-color: #f2f2f2;
+            background-color: ${({theme}) => theme.secondBackground};
         }
     }
 
     th{
         vertical-align: middle;
         font-weight: 600;
-        background:#424242;
+        background:${({theme}) => theme.body};
         text-align: center;
         color: #fff;
     }

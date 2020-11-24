@@ -19,7 +19,7 @@ export const StyledBurger = styled.div`
   div {
     width: 2rem;
     height: 0.25rem;
-    background-color: ${({ home, open }) => home ? '#fff' : open ? '#fff': '#333'};
+    background-color: ${({ home, open, theme }) => home ? '#fff' : open ? '#fff': theme.text};
     border-radius: 10px;
     transform-origin: 1px;
     transition: all 0.3s linear;
@@ -76,7 +76,7 @@ export const Item = styled(NavLink)`
     cursor: pointer;
     transition: 0.5s;
     text-decoration: none;
-    color: ${({ home, open }) => home ? '#fff' : open ? '#fff' : '#636e72'};
+    color: ${({ home, open, theme }) => home ? '#fff' : open ? '#fff' : theme.text};
     &:hover{
         font-weight: 600;
     }
@@ -86,7 +86,7 @@ export const Logout = styled.p `
   cursor: pointer;
     transition: 0.5s;
     text-decoration: none;
-    color: ${({ home, open }) => home ? '#fff' : open ? '#fff' : '#636e72'};
+    color: ${({ home, open, theme }) => home ? '#fff' : open ? '#fff' : theme.text};
     &:hover{
         font-weight: 600;
     }

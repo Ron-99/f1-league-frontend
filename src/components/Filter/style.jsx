@@ -13,7 +13,7 @@ export const Filtro = styled.div `
 
     label{
         margin: 0 2%;
-        color: #747d8c;
+        color: ${({theme}) => theme.text};
         font-weight: 700;
     }
 
@@ -23,7 +23,7 @@ export const Filtro = styled.div `
         border: 1px solid #ccc;
         outline: none;
         background: #fefefe;
-        color: #747d8c;
+        color: ${({theme}) => theme.secondText};
         border-radius: 5px;
         padding-left: 45px;
     }

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 export const TitleProfile = styled.h1 `
     margin: 2% 1.5% 1% 1.5%;
-    color: #424242;
+    color: ${({ theme }) => theme.text};
     font-size: 0.8rem;
     font-weight: bold;
     text-transform: uppercase;
@@ -18,13 +18,14 @@ export const RecentResultsTable = styled.table `
     border-collapse: collapse;
     text-align: center;
     width: 98%;
-    color: #636e72;
+    color: ${({ theme }) => theme.text};
     vertical-align: middle;
-    box-shadow: 2px 4px 8px 2px rgba(185, 185, 185, 0.5);
+    box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.5);
     transition: 0.5s;
-    border: 2px solid rgba(185, 185, 185, 0.5);
+    /* border: 2px solid rgba(0, 0, 0, 0.5); */
     margin-bottom: 6%;
     margin: 1%;
+    background: ${({theme}) => theme.background};
 
     &:hover{
         box-shadow: 4px 8px 16px 4px rgba(0,0,0,0.5);
@@ -32,10 +33,10 @@ export const RecentResultsTable = styled.table `
 
     tr {
         height: 60px;
-        background: white;
+        background: ${({theme}) => theme.background};
 
         &:nth-child(even){
-            background-color: #f2f2f2;
+            background-color: ${({theme}) => theme.secondBackground};
         }
     }
 
@@ -46,9 +47,9 @@ export const RecentResultsTable = styled.table `
     th{
         vertical-align: middle;
         font-weight: 600;
-        background:#424242;
+        background:${({theme}) => theme.body};
         text-align: center;
-        color: #fff;
+        color: ${({theme}) => theme.text};
         padding: 10px 20px;
     }
 
@@ -92,12 +93,12 @@ export const RecentResultsTable = styled.table `
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 2px 4px 8px 2px rgba(185, 185, 185, 0.5);
+            box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.5);
             transition: 0.5s;
             height: auto;
 
             &:nth-child(even){
-                background-color: #fff;
+                background-color: ${({theme}) => theme.background};
             }
 
             &:hover{
@@ -127,6 +128,6 @@ export const Line = styled.tr `
 `
 
 export const BestLap = styled.td `
-    color: ${({bestLap}) => bestLap ? '#5352ed' : '#636e72'};
+    color: ${({bestLap, theme}) => bestLap ? '#5352ed' : theme.text};
     
 `

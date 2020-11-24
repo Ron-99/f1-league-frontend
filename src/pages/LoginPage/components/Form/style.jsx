@@ -8,7 +8,7 @@ export const FormStyle = styled.div `
     width: 50%;
     max-width: 500px;
     height: 500px;
-    box-shadow: 2px 4px 8px 2px rgba(185, 185, 185, 0.5);
+    box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.5);
     @media (max-width: 768px) {
         width: 80%;
     }
@@ -21,7 +21,7 @@ export const FormHeader = styled.div `
     padding: 10% 0 0 0;
     width: 100%;
     height: 100px;
-    color: #424242;
+    color: ${({ theme }) => theme.text};
 `
 
 export const FormBody = styled.div `
@@ -49,7 +49,7 @@ export const Field = styled.div `
     label{
         font-family: 'Lato';
         font-weight: 600;
-        color: #424242;
+        color: ${({ theme }) => theme.text};
     }
     input{
         width: 95%;
@@ -83,7 +83,7 @@ export const FormFooter = styled.div `
     button{
         width: 100%;
         height: 50px;
-        background: #424242;
+        background: ${({theme}) => theme.body};
         color: #fff;
         font-weight: 600;
         font-size: 16px;
