@@ -7,7 +7,7 @@ export const NotFoundStyle = styled.div `
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #424242;
+    color: ${({ theme }) => theme.text};
 
     h1{
         font-size: 10rem;

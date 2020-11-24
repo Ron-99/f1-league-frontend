@@ -11,10 +11,10 @@ export const Icons = styled.div `
 export const Icon = styled.a `
     font-size: 40px;
     margin: 0 10px;
-    color: ${({color}) => color};
+    color: ${({color, theme}) => color === "#424242" ? theme.text : color};
     cursor: pointer;
     transition: 0.3s;
     &:hover{
-        color: ${({ colorHover }) => colorHover};
+        color: ${({ colorHover, theme }) => colorHover === "#6a737d" ? theme.secondText : colorHover};
     }
 `

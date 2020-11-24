@@ -23,7 +23,7 @@ export const Data = styled.div `
 
     h3{
         font-size: 1.1rem;
-        color: #999;
+        color: ${({theme}) => theme.secondText};
         margin: 0 3px;
     }
 `

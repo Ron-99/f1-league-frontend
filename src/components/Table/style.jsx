@@ -7,13 +7,13 @@ export const Overflow = styled.div `
 export const TableContent = styled.table `
     width: 98%;
     border-collapse: collapse;
-    color: #636e72;
+    color: ${({ theme }) => theme.text};
     font-family: 'roboto';
     font-weight: 400;
     margin: 1%;
     box-shadow: 2px 4px 8px 2px rgba(185, 185, 185, 0.5);
     transition: 0.5s;
-    background: #ffffff;
+    background: ${({theme}) => theme.background};
     border:2px solid rgba(185, 185, 185, 0.5);
     margin-bottom: 6%;
 
@@ -32,7 +32,7 @@ export const TableContent = styled.table `
     th{
         vertical-align: middle;
         font-weight: 600;
-        background:#424242;
+        background: ${({theme}) => theme.body};
         text-align: center;
         color: #fff;
     }
@@ -49,5 +49,5 @@ export const Line = styled.tr `
 `
 
 export const BestLap = styled.td `
-    color: ${({bestLap}) => bestLap ? '#5352ed' : '#636e72'};
+    color: ${({bestLap, theme}) => bestLap ? '#5352ed' : theme.text};
 `

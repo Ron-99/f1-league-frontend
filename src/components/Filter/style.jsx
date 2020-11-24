@@ -13,18 +13,18 @@ export const Filtro = styled.div `
 
     label{
         margin: 0 2%;
-        color: #747d8c;
+        color: ${({theme}) => theme.text};
         font-weight: 700;
     }
 
     select{
         width: 120px;
         height: 30px;
-        border: 1px solid #ccc;
         outline: none;
-        background: #fefefe;
-        color: #747d8c;
+        background: ${({theme}) => theme.secondBackground};
+        color: ${({theme}) => theme.text};
         border-radius: 5px;
         padding-left: 45px;
+        box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
     }
 `

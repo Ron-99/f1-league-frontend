@@ -41,7 +41,7 @@ export const ModalContent = styled.div `
 
 export const ModalHeader = styled.div `
     padding: 10px 16px;
-    background-color: #424242;
+    background-color: ${({theme}) => theme.body};
     color: #fff;
     border-bottom: 2px solid #7bed9f;
 
@@ -118,7 +118,7 @@ export const ModalFooter = styled.div `
         cursor: pointer;
         transition: 0.4s;
         margin: 1%;
-        color: #747d8c;
+        color: ${({theme}) => theme.text};
         border: 1px solid rgb(59, 59, 59);
         border-radius: 5px;
         background: #fff; 

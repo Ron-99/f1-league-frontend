@@ -10,6 +10,6 @@ export const GlobalStyle = createGlobalStyle`
         font-family: monospace, sans-serif;
     }
     body{
-        background:#ffffff;
+        background:${({ theme }) => theme.background};
     }
 `

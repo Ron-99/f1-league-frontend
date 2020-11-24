@@ -34,8 +34,8 @@ export const List = styled.div`
     }
 
     article{
-        background: #fff;
-        border: 1px solid #ddd;
+        background: ${({theme}) => theme.background};
+        border: 1px solid ${({theme}) => theme.toggleBorder};
         border-radius: 5px;
         padding: 20px;
         margin-bottom: 20px;
@@ -47,13 +47,13 @@ export const List = styled.div`
         }
 
         strong{
-            color: #424242;
-        font-weight: bold;
+            color: ${({ theme }) => theme.text};
+            font-weight: bold;
         }
 
         p{
             font-size: 16px;
-            color: #999;
+            color: ${({theme}) => theme.secondText};
             margin-top: 5px;
             line-height: 24px;
         }
@@ -66,7 +66,7 @@ export const Driver = styled(Link)`
     border: 2px solid #ccc;
     background: none;
     margin-top: 10px;
-    color:#747d8c;
+    color: ${({theme}) => theme.text};
     font-weight: bold;
     font-size: 16px;
     text-decoration: none;
