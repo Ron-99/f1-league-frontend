@@ -3,9 +3,9 @@ import axios from 'axios'
 import {getToken, getEmail} from './auth';
 
 // PRD
-// const api = axios.create({
-//     baseURL: "https://api.e-racebrasil.com.br"
-// });
+const api = axios.create({
+    baseURL: "https://api.e-racebrasil.com.br"
+});
 
 // STG
 // const api = axios.create({
@@ -13,9 +13,9 @@ import {getToken, getEmail} from './auth';
 // });
 
 // DEV
-const api = axios.create({
-    baseURL: "http://localhost:8080"
-});
+// const api = axios.create({
+//     baseURL: "http://localhost:8080"
+// });
 
 api.interceptors.request.use(async config => {
     const token = getToken();
