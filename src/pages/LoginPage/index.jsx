@@ -14,7 +14,7 @@ const LoginPage = () => {
         try{
             const {data} = await api.post(`/user/login`, form);
             if(data){
-                login(data.token)
+                login(data)
                 history.push("/");
                 window.location.reload();
             }

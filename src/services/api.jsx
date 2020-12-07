@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import {getToken} from './auth';
+import {getToken, getEmail} from './auth';
 
 // PRD
 const api = axios.create({
@@ -19,10 +19,13 @@ const api = axios.create({
 
 api.interceptors.request.use(async config => {
     const token = getToken();
+    const email = getEmail();
 
-    if(token)
+    if(token){
         config.headers.common['x-access-token'] = token;
-
+        config.headers.common['emailUser'] = email;
+        console.log(email)
+    }
     return config;
 });
 
