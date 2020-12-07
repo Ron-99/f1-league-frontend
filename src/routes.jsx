@@ -6,6 +6,8 @@ import { isAuthenticated } from './services/auth';
 
 import Nav from './components/Nav';
 import HomePage from './pages/HomePage';
+import LeaguesPage from './pages/LeaguesPage';
+import EventsPage from './pages/EventsPage';
 import ClassificationPage from './pages/ClassificationPage';
 import DriversPage from './pages/DriversPage';
 import DriverPage from './pages/DriverPage';
@@ -38,6 +40,8 @@ const Routes = ({themeToggler, theme}) => (
         <HeaderCustom themeToggler={themeToggler} theme={theme}/>
         <Switch>
             <Route exact path='/' component={() => (<HomePage themeToggler={themeToggler} theme={theme} />)} />
+            <Route exact path='/leagues' component={LeaguesPage} />
+            <Route path='/leagues/events/:id' component={EventsPage} />
             <Route exact path='/classification' component={ClassificationPage} />
             <Route exact path='/driver' component={DriversPage} />
             <Route path='/driver/:id' component={DriverPage} />
