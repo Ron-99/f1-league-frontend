@@ -34,7 +34,8 @@ const DriverPage = () => {
         try{
             const {data} = await api.get(`/driver/${id}`);
             setDriver(data);
-            setTeam(data.team[0]);
+            const team = data.team[data.team.length - 1]
+            setTeam(team);
             setTeams(data.team);
             setPenalty(data.penalty);
             setPage(data.penalty.level);

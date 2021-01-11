@@ -10,11 +10,11 @@ const Cards = ({ drivers, teams, isDrivers }) => (
                     <article key={driver._id}>
                         <Row>
                             <strong>{driver.name}</strong>
-                            <strong>{driver.rank[0].name}</strong>
+                            <strong>{driver.rank[driver.rank.length - 1].name}</strong>
                         </Row>
                         
                         <Row>
-                            <p>{driver.team[0].name}</p>
+                            <p>{driver.team[driver.team.length - 1].name}</p>
                         </Row>
                         
                         <Row>
