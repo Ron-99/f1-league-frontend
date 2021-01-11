@@ -2,7 +2,8 @@ import React from 'react';
 
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
 
-import { Card, Cards, LeaguesWrapper, Title, Overlay, EnterLeague, CardTitle, Icon, CardBody } from './style';
+import { Card, Overlay, EnterLeague, CardTitle, Icon, CardBody } from './style';
+import { Cards, Wrapper, Title } from '../../styles/global';
 
 import auto from '../../img/auto.jpg';
 import dirt from '../../img/dirt.jpg';
@@ -28,7 +29,7 @@ const LeaguesPage = () => {
     ]
 
     return (
-        <LeaguesWrapper>
+        <Wrapper>
             <Title>Ligas Oficiais E-Race Brasil</Title>
             <Cards>
                 {
@@ -48,7 +49,7 @@ const LeaguesPage = () => {
                     ))
                 }
             </Cards>  
-        </LeaguesWrapper>
+        </Wrapper>
     )
 }
 

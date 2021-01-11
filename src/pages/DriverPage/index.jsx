@@ -24,16 +24,13 @@ const DriverPage = () => {
         loadDriver();
         loadTrophys();
         loadRaces();
-    },[penalty]);
-
-    useEffect(() => {
         loadPenalties();
-    },[penalty]);
+    },[page]);
 
     const loadDriver = async() => {
         try{
             const {data} = await api.get(`/driver/${id}`);
-            setDriver(data);
+            setDriver(data);z
             setTeam(data.team[0]);
             setTeams(data.team);
             setPenalty(data.penalty);

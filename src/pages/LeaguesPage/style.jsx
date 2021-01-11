@@ -2,26 +2,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom';
 
-export const LeaguesWrapper = styled.div`
-    display: flex;
-    flex-direction:column;
-    height: 80vh;
-    width: 98%;
-    margin: 0 1%;
-`
 
-export const Title = styled.h2`
-    color: ${({theme}) => theme.text};
-
-`
-
-export const Cards = styled.div`
-    display: grid;
-    width: 100%;
-    grid-template-columns: 25% 25% 25% 25%;
-    margin-top: 2%;
-    gap: 1%;
-`
 export const Overlay = styled.div `
     transition: opacity 0.4s;
     display: flex;
