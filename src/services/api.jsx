@@ -14,7 +14,7 @@ const api = axios.create({
 
 // DEV
 // const api = axios.create({
-//     baseURL: "http://localhost:8080"
+//     baseURL: "http://localhost:3333"
 // });
 
 api.interceptors.request.use(async config => {
@@ -24,7 +24,6 @@ api.interceptors.request.use(async config => {
     if(token){
         config.headers.common['x-access-token'] = token;
         config.headers.common['emailUser'] = email;
-        console.log(email)
     }
     return config;
 });

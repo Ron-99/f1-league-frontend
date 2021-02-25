@@ -39,7 +39,7 @@ const Filter = ({ranks, seasons, loadSeason, setRank, setSeason, setPage, isRace
                 <select ref={seasonRef} name="season" id="season" onChange={handleChangeSeason}>
                 {
                     seasons.map(season => (
-                        <option key={season._id} data-id={season._id} value={season.number}>{season.number}</option>
+                        <option key={season.id} data-id={season.id} value={season.number}>{season.number}</option>
                     ))
                 }
                 </select>

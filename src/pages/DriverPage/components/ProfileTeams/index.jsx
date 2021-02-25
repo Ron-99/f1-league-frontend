@@ -8,7 +8,7 @@ const ProfileTeams = ({teams, team}) => (
             <TeamsTable>
                 <tbody>
                     <tr>
-                        <td style={{textAlign: 'left', paddingLeft: '1%'}}>{team.name}</td>
+                        <td style={{textAlign: 'left', paddingLeft: '1%'}}>{team}</td>
                     </tr>
                 </tbody>
             </TeamsTable>
@@ -20,7 +20,7 @@ const ProfileTeams = ({teams, team}) => (
                 <tbody>
                     {
                         teams.map(team => (
-                            <tr key={team._id}>
+                            <tr key={team.id}>
                                 <td style={{textAlign: 'left', paddingLeft: '1%'}}>{team.name}</td>
                             </tr>
                         ))

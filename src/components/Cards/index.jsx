@@ -7,18 +7,18 @@ const Cards = ({ drivers, teams, isDrivers }) => (
         {
             isDrivers ?
                 drivers.map(driver => (
-                    <article key={driver._id}>
+                    <article key={driver.id}>
                         <Row>
-                            <strong>{driver.name}</strong>
-                            <strong>{driver.rank[0].name}</strong>
+                            <strong>{driver.driver}</strong>
+                            <strong>{driver.rank}</strong>
                         </Row>
                         
                         <Row>
-                            <p>{driver.team[0].name}</p>
+                            <p>{driver.team}</p>
                         </Row>
                         
                         <Row>
-                            <Driver to={`/driver/${driver._id}`}>Acessar</Driver>
+                            <Driver to={`/driver/${driver.id}`}>Acessar</Driver>
                         </Row>
                     </article>
                 ))

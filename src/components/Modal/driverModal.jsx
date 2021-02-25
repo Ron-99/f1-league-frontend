@@ -7,6 +7,8 @@ import { faPlus, faMinus, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 import api from '../../services/api';
 
+import {getId} from '../../services/auth';
+
 import useInput from '../Input'
 
 import { Fields, ModalBody, ModalContent, ModalFooter, ModalForm, ModalHeader, Field, New, Minus, Button } from './style';
@@ -16,6 +18,7 @@ const DriverModal = ({ show, setShow, ranks, teams, title, isEdit, loadTeams }) 
     const [name, nameInput, setName, refName] = useInput({ type: 'text', id: 'name', name: 'name' });
     const [rank, rankInput, setRank] = useInput({ type: 'select', id: 'rank', name: 'rank', data: ranks });
     const [equipe, equipeInput, setEquipe] = useInput({ type: 'text', name: 'team', id: 'team' });
+    const [reserve, reserveInput, setReserve] = useInput({ type: 'checkbox', name: 'reserve', id: 'reserve'})
     const [equipeId, setEquipeId] = useState('');
     const [team, setTeam] = useState('');
     const [newTeam, setNewTeam] = useState(false);
@@ -32,8 +35,8 @@ const DriverModal = ({ show, setShow, ranks, teams, title, isEdit, loadTeams }) 
     }
 
     const saveTeam = async () => {
-        const { data, status } = await api.post('/team', { name: equipe });
-        setEquipeId(data.data._id);
+        const { data, status } = await api.post('/team', { name: equipe, created_by: getId(), updated_by: getId() });
+        setEquipeId(data.data.id);
         if (status === 201) {
             alert.success(data.message);
             setNewTeam(false);
@@ -44,16 +47,29 @@ const DriverModal = ({ show, setShow, ranks, teams, title, isEdit, loadTeams }) 
 
     const save = async () => {
         if (name !== '' && (equipeId !== '' || team !== '')) {
-
             const driver = {
                 name: name,
-                idRank: rank || rankInput.props.children[0].key,
-                idTeam: equipeId || team.key
+                // idTeam: equipeId || team.key,
+                created_by: getId(),
+                updated_by: getId()
             }
+
+
+            
 
             const { data, status } = await api.post(`/driver`, driver);
             if (status === 201) {
+                const {data:season} = await api.get(`/season/rank/${rank || rankInput.props.children[0].key}`);
+                console.log(equipeId || team.key)
+                const {data: data2, status: status2} = await api.post(
+                    `/driver/${data.data.id}/team/${equipeId || team.key}/season/${season[0].id}?reserve=${reserve}`, 
+                    {
+                        created_by: getId(),
+                        updated_by: getId()
+                    }
+                )
                 alert.success(data.message);
+                console.log(data2.data)
                 clearFields();
             }
         } else {
@@ -69,7 +85,7 @@ const DriverModal = ({ show, setShow, ranks, teams, title, isEdit, loadTeams }) 
         () =>
             teams.map((team) => ({
                 label: team.name,
-                key: team._id,
+                key: team.id, 
                 ...team,
             })),
         [teams]
@@ -145,6 +161,10 @@ const DriverModal = ({ show, setShow, ranks, teams, title, isEdit, loadTeams }) 
                                     <Field>
                                         <label htmlFor="rank">Liga</label>
                                         {rankInput}
+                                    </Field>
+                                    <Field>
+                                        <label htmlFor="reserve">Reserva</label>
+                                        {reserveInput}
                                     </Field>
                                 </Fields>
                             </ModalBody>

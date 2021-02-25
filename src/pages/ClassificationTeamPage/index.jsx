@@ -9,7 +9,7 @@ const ClassificationTeamPage = () => {
     const [ranks, setRanks] = useState([]);
     const [rank, setRank] = useState('');
     const [seasons, setSeasons] = useState([]);
-    const [season, setSeason] = useState('');
+    const [season, setSeason] = useState(null);
 
     useEffect(() => {
         loadRanks();
@@ -21,7 +21,7 @@ const ClassificationTeamPage = () => {
         try{
             
             if(rank && season){
-                const {data} = await api.get(`/classification/team-points?rank=${rank}&season=${season}`);
+                const {data} = await api.get(`/classification/teams-points?rank=${rank}&season=${season}`);
                 setClassification(data);
             }
         }catch(err){
@@ -30,28 +30,35 @@ const ClassificationTeamPage = () => {
     }
 
     const loadRanks = async () => {
-        try{
-            const {data} = await api.get(`/rank`);
-
-            if(!rank)
+        try {
+            if(rank === '' && ranks.length === 0){
+                const { data } = await api.get(`/rank`);
                 setRank(data[0].name);
+                setRanks(data);
+                
+                loadSeasons(data[0].id);
+            }
 
-            setRanks(data);
-
-            if(!rank)
-                loadSeasons(data[0]._id);
-        }catch(err){
+            
+        } catch (err) {
             console.error(err);
         }
     }
 
     const loadSeasons = async (idRank) => {
-        try{
-            const {data} = await api.get(`/rank/season/${idRank}`)
+        try {
+            if (idRank !== '') {
+                const { data } = await api.get(`/season/rank/${idRank}`)
 
-            setSeasons(data);
-            setSeason(data[0].number.toString());
-        }catch(err){
+                setSeasons(data);
+
+                if(season === null)
+                    setSeason(data[0].number.toString());
+            }
+
+
+
+        } catch (err) {
             console.error(err);
         }
     }

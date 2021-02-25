@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import DateFilter from './components/DateFilter';
 
-import { Date } from './components/DateFilter/style';
 
 import Table from './components/Table'
 import Modal from '../../components/Modal';
@@ -31,7 +30,7 @@ const ClassificationPage = () => {
     const [ranks, setRanks] = useState([]);
     const [rank, setRank] = useState('');
     const [seasons, setSeasons] = useState([]);
-    const [season, setSeason] = useState('');
+    const [season, setSeason] = useState(null);
     const [tracks, setTracks] = useState([]);
     const [track, setTrack] = useState('');
     const [trackLabel, setTrackLabel] = useState('');
@@ -52,20 +51,20 @@ const ClassificationPage = () => {
         loadTracks();
         loadDrivers();
         loadClassification();
-    }, [rank, date])
+    }, [rank, season, date])
 
     const loadClassification = async () => {
         moment.locale('pt-br');
 
         try {
+            if (date !== '' && rank !== '' && season !== '') {
 
-            if (date !== '' && rank !== '' ) {
-
-                console.log(date)
-                const { data } = await api.get(`/classification?date=${date}&rank=${rank}&season=1`);
+                const { data } = await api.get(`/classification?date=${date}&rank=${rank}&season=${season}`);
+                
                 setClassification(data);
+                
                 if (data.length !== 0) {
-                    setTrackLabel(data[0].track.name);
+                    setTrackLabel(data[0].tracks.name);
                 }
 
             }
@@ -77,17 +76,16 @@ const ClassificationPage = () => {
     const loadDates = async () => {
         moment.locale('pt-br');
         try {
-            if (rank !== '') {
+            
+            if (rank !== '' && season !== '') {
 
-                const { data } = await api.get(`/classification/dates?rank=${rank}`);
+                const { data } = await api.get(`/classification/dates?rank=${rank}&season=${season}`);
                 setDates(data);
-
-                    
                 
-                setDateLabel(moment(data[page].substr(0, 10)).format('LL') || '');
+                setDateLabel(moment(data[page].date.substr(0, 10)).format('LL') || '');
                 
             
-                setDate(data[page].substr(0, 10) || '');
+                setDate(data[page].date.substr(0, 10) || '');
             }
 
         } catch (err) {
@@ -102,7 +100,7 @@ const ClassificationPage = () => {
                 setRank(data[0].name);
                 setRanks(data);
                 
-                loadSeasons(data[0]._id);
+                loadSeasons(data[0].id);
             }
 
             
@@ -114,11 +112,12 @@ const ClassificationPage = () => {
     const loadSeasons = async (idRank) => {
         try {
             if (idRank !== '') {
-                const { data } = await api.get(`/rank/season/${idRank}`)
+                const { data } = await api.get(`/season/rank/${idRank}`)
 
                 setSeasons(data);
 
-                setSeason(data[0].number.toString());
+                if(season === null)
+                    setSeason(data[0].number.toString());
             }
 
 
@@ -132,6 +131,7 @@ const ClassificationPage = () => {
         try {
             const { data } = await api.get(`/track`);
             setTracks(data);
+     
         } catch (err) {
             console.error(err);
         }
@@ -139,7 +139,7 @@ const ClassificationPage = () => {
 
     const loadDrivers = async () => {
         try {
-            const { data } = await api.get(`/driver`);
+            const { data } = await api.get(`/driver?all=true`);
             setDrivers(data);
         } catch (err) {
             console.error(err)
