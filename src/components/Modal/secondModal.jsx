@@ -24,11 +24,12 @@ const SecondModal = ({show, setShow, title, drivers, track, date, createClassifi
             refPosition.current.focus()
 
         if(isEdit){
+
             setPosition(rating.position);
             setPoints(rating.points);
-            setBestTime(rating.bestTime);
-            setTrialTime(rating.trialTime);
-            setDriver(driverEdit._id);
+            setBestTime(rating.best_time);
+            setTrialTime(rating.trial_time);
+            setDriver(driverEdit.id);
         }        
     }
 
@@ -45,18 +46,20 @@ const SecondModal = ({show, setShow, title, drivers, track, date, createClassifi
         if(position !== '' && points !== '' && driver !== ''){
             const data = {
                 position: parseInt(position),
-                idTrack: track || rating.track._id,
+                track_id: track || rating.tracks.id,
                 date: date || rating.date,
                 points: parseInt(points),
-                bestTime: bestTime || "-",
-                trialTime: trialTime ? trialTime : bestTime ? "NC" : "DNS",
-                idDriver: driver.key || driver
+                best_time: bestTime || "-",
+                trial_time: trialTime ? trialTime : bestTime ? "NC" : "DNS",
+                driver_id: driver.key || driver.id,
+                created_by: 1,
+                updated_by: 1
             }
             
             if(!isEdit)
                 await createClassification(data);
             else
-                await updateClassification(rating._id, data);
+                await updateClassification(rating.id, data);
         }else{
             alert.show('Por favor preencha todos os campos');
         }
@@ -71,7 +74,7 @@ const SecondModal = ({show, setShow, title, drivers, track, date, createClassifi
         () =>
             drivers.map((driver) => ({
             label: driver.name,
-            key: driver._id,
+            key: driver.id,
             ...driver,
             })),
         [drivers]

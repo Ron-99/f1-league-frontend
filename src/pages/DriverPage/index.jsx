@@ -11,32 +11,37 @@ import ProfileTeams from './components/ProfileTeams';
 
 const DriverPage = () => {
     const [driver, setDriver] = useState({});
-    const [team, setTeam] = useState({});
+    const [team, setTeam] = useState(null);
     const [teams, setTeams] = useState([]);
     const [trophys, setTrophys] = useState({});
     const [penalty, setPenalty] = useState({});
     const [penalties, setPenalties] = useState([]);
     const [races, setRaces] = useState([]);
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(1);
     const { id }= useParams();
 
     useEffect(()=>{
         loadDriver();
         loadTrophys();
         loadRaces();
-    },[penalty]);
+    },[page]);
 
     useEffect(() => {
         loadPenalties();
-    },[penalty]);
+    },[]);
 
     const loadDriver = async() => {
         try{
             const {data} = await api.get(`/driver/${id}`);
             setDriver(data);
-            setTeam(data.team[0]);
-            setTeams(data.team);
-            setPenalty(data.penalty);
+            setTeam(data.team);
+            setTeams(data.teams);
+            const penalty = {
+                description: data.description,
+                color: data.color,
+                level: data.level
+            }
+            setPenalty(penalty);
             setPage(data.penalty.level);
         }catch(e){
             console.error(e);
@@ -45,7 +50,7 @@ const DriverPage = () => {
 
     const loadTrophys = async() =>{
         try{
-            const {data} = await api.get(`/driver/wins/${id}`);
+            const {data} = await api.get(`/driver/${id}/wins`);
             setTrophys(data);
         }catch(e){
             console.error(e);
@@ -63,7 +68,7 @@ const DriverPage = () => {
 
     const loadRaces = async() => {
         try{
-            const {data} = await api.get(`/driver/races/${id}`);
+            const {data} = await api.get(`/driver/${id}/races`);
             setRaces(data);
         }catch(e){
             console.error(e);
@@ -72,7 +77,7 @@ const DriverPage = () => {
 
     const updatePenalty = async(level) =>{
         try{
-            await api.put(`/driver/penalty/${id}?level=${level}`)
+            await api.patch(`/driver/${id}?penalty_id=${level}`, {updated_by: 1})
         }catch(e){
             console.error(e);
         }
@@ -99,7 +104,7 @@ const DriverPage = () => {
             <ProfileHeader>
                 <ProfilePicture/>
                 <ProfileInfo driver={driver} trophys={trophys} team={team}/>
-                <ProfilePenalty penalty={penalty} minusPenalty={minusPenalty} plusPenalty={plusPenalty} /> 
+                {/* <ProfilePenalty penalty={penalty} minusPenalty={minusPenalty} plusPenalty={plusPenalty} />  */}
             </ProfileHeader>
 
             <ProfileBody>

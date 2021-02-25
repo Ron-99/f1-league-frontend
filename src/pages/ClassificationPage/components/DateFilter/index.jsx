@@ -17,9 +17,9 @@ const DateFilter = ({page, setPage, setDates, dates, setDate, setDateLabel, date
         setPage(pageNumber);
 
         moment.locale('pt-br');
-        setDates(dates[pageNumber].substr(0, 10));
-        setDate(dates[pageNumber].substr(0, 10));
-        setDateLabel(moment(dates[pageNumber].substr(0, 10)).format('LL'));
+        setDates(dates[pageNumber].date.substr(0, 10));
+        setDate(dates[pageNumber].date.substr(0, 10));
+        setDateLabel(moment(dates[pageNumber].date.substr(0, 10)).format('LL'));
     }
 
     const prevDate = () => {
@@ -32,9 +32,9 @@ const DateFilter = ({page, setPage, setDates, dates, setDate, setDateLabel, date
         moment.locale('pt-br');
         
 
-        setDates(dates[pageNumber].substr(0, 10));
-        setDate(dates[pageNumber].substr(0, 10));
-        setDateLabel(moment(dates[pageNumber].substr(0, 10)).format('LL'));
+        setDates(dates[pageNumber].date.substr(0, 10));
+        setDate(dates[pageNumber].date.substr(0, 10));
+        setDateLabel(moment(dates[pageNumber].date.substr(0, 10)).format('LL'));
         
     }
 
