@@ -14,12 +14,12 @@ const RecentResults = ({ races }) => {
                     <tbody>
                         {
                             races.map(race => (
-                                <Line key={race._id} data-id={race._id} position={race.position}>
+                                <Line key={race.id} data-id={race.id} position={race.position}>
                                     <td><span>Posição</span>{race.position}</td>
-                                    <BestLap bestLap={race.bestLap}><span>Melhor Volta</span>{race.bestTime}</BestLap>
-                                    <td><span>Tempo de Prova</span>{race.trialTime}</td>
+                                    <BestLap bestLap={race.best_lap === 1}><span>Melhor Volta</span>{race.best_time}</BestLap>
+                                    <td><span>Tempo de Prova</span>{race.trial_time}</td>
                                     <td><span>Pontos</span>{race.points}</td>
-                                    <td><span>Pista</span>{race.track.name}</td>
+                                    <td><span>Pista</span>{race.track}</td>
                                     <td><span>Data</span>{moment(race.date).format('LL')}</td>
                                     <td><span>Liga</span>{race.rank}</td>
                                 </Line>

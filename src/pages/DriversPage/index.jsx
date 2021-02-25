@@ -26,7 +26,7 @@ const DriversPage = () => {
 
     const loadDrivers = async() => {
         try{
-            const {data} = await api.get(`/driver/drivers?name=${param}`);
+            const {data} = await api.get(`/driver?name=${param}`);
             setDrivers(data);
         }catch(error){
             console.error(error);

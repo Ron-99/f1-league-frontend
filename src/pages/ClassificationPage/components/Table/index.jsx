@@ -62,17 +62,17 @@ const Table = ({ load, deleteClassification, drivers, updateClassification }) =>
                     </thead>
                     <tbody>
                         {
-                            load.map(rating => (
-                                <Line key={rating._id} data-id={rating._id} position={rating.position}>
+                            load.map((rating, i) => (
+                                <Line key={rating.id} data-id={rating.id} position={i+1}>
                                     <td><span>Posição</span>{rating.position}</td>
-                                    <td><span>Piloto</span><Driver to={`/driver/${rating.driver._id}`}>{rating.driver.name}</Driver></td>
-                                    <td><span>Equipe</span>{rating.driver.team[rating.driver.team.length - 1].name}</td>
-                                    <BestLap bestLap={rating.bestLap}><span>Melhor Tempo</span>{rating.bestTime}</BestLap>
-                                    <td><span>Tempo de Prova</span>{rating.trialTime}</td>
+                                    <td><span>Piloto</span><Driver to={`/driver/${rating.drivers.id}`}>{rating.drivers.name}</Driver></td>
+                                    <td><span>Equipe</span>{rating.drivers.drivers_participated[0].teams.name}</td>
+                                    <BestLap bestLap={rating.best_lap}><span>Melhor Tempo</span>{rating.best_time}</BestLap>
+                                    <td><span>Tempo de Prova</span>{rating.trial_time}</td>
                                     <td><span>Pontos</span>{rating.points}</td>
                                     {
                                         isAuthenticated()?
-                                        <td><Button color={"edit"} onClick={() => update(rating, rating.driver)}><FontAwesomeIcon icon={faEdit} size="2x" /></Button> <Button color={"delete"} onClick={() => remove(rating._id)}><FontAwesomeIcon icon={faTrashAlt} size="2x" /></Button></td>
+                                        <td><Button color={"edit"} onClick={() => update(rating, rating.drivers)}><FontAwesomeIcon icon={faEdit} size="2x" /></Button> <Button color={"delete"} onClick={() => remove(rating.id)}><FontAwesomeIcon icon={faTrashAlt} size="2x" /></Button></td>
                                         : ""
                                     }
                                     

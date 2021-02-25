@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from '../../components/Nav';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDiscord, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { faDiscord, faYoutube, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 import {Body, Box, Home, Title} from './style';
 import {Icons, Icon} from '../../components/Icons/style';
@@ -25,8 +25,12 @@ const HomePage = ({theme, themeToggler}) => (
                         <FontAwesomeIcon icon={faDiscord} />
                     </Icon>
                     
-                    <Icon colorHover={"#25D366"} color={"#fff"} href="https://chat.whatsapp.com/CKbymTMiP7r6LURlNbHQnI" target="_blank">
-                        <FontAwesomeIcon icon={faWhatsapp} />
+                    <Icon colorHover={"#FF0000"} color={"#fff"} href="https://www.youtube.com/channel/UCt4TIXg2FbYE6owWflFTSOg" target="_blank">
+                        <FontAwesomeIcon icon={faYoutube} />
+                    </Icon>
+
+                    <Icon colorHover={"#E1306C"} color={"#fff"} href="https://www.instagram.com/eracebrasil/" target="_blank">
+                        <FontAwesomeIcon icon={faInstagram} />
                     </Icon>
                 </Icons>
             </Body>

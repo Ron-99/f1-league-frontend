@@ -118,7 +118,7 @@ export const ModalFooter = styled.div `
         cursor: pointer;
         transition: 0.4s;
         margin: 1%;
-        color: ${({theme}) => theme.text};
+        color: #636e72;
         border: 1px solid rgb(59, 59, 59);
         border-radius: 5px;
         background: #fff; 
