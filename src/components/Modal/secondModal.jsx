@@ -4,6 +4,8 @@ import DataListInput from "react-datalist-input";
 import useInput from '../Input'
 import { useAlert } from 'react-alert'
 
+import {getId} from '../../services/auth';
+
 import {Fields, ModalBody, ModalContent, ModalFooter, ModalForm, ModalHeader, Field} from './style';
 
 const SecondModal = ({show, setShow, title, drivers, track, date, createClassification, rating, driverEdit, isEdit, updateClassification}) => {
@@ -52,8 +54,8 @@ const SecondModal = ({show, setShow, title, drivers, track, date, createClassifi
                 best_time: bestTime || "-",
                 trial_time: trialTime ? trialTime : bestTime ? "NC" : "DNS",
                 driver_id: driver.key || driver.id,
-                created_by: 1,
-                updated_by: 1
+                created_by: getId(),
+                updated_by: getId()
             }
             
             if(!isEdit)

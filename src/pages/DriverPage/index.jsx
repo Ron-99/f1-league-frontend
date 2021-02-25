@@ -9,6 +9,8 @@ import ProfilePenalty from './components/ProfilePenalty';
 import RecentResults from './components/RecentResults';
 import ProfileTeams from './components/ProfileTeams';
 
+import {getId} from '../../services/auth';
+
 const DriverPage = () => {
     const [driver, setDriver] = useState({});
     const [team, setTeam] = useState(null);
@@ -77,7 +79,7 @@ const DriverPage = () => {
 
     const updatePenalty = async(level) =>{
         try{
-            await api.patch(`/driver/${id}?penalty_id=${level}`, {updated_by: 1})
+            await api.patch(`/driver/${id}?penalty_id=${level}`, {updated_by: getId()})
         }catch(e){
             console.error(e);
         }

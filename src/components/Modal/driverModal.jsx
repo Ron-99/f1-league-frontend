@@ -7,6 +7,8 @@ import { faPlus, faMinus, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 import api from '../../services/api';
 
+import {getId} from '../../services/auth';
+
 import useInput from '../Input'
 
 import { Fields, ModalBody, ModalContent, ModalFooter, ModalForm, ModalHeader, Field, New, Minus, Button } from './style';
@@ -33,7 +35,7 @@ const DriverModal = ({ show, setShow, ranks, teams, title, isEdit, loadTeams }) 
     }
 
     const saveTeam = async () => {
-        const { data, status } = await api.post('/team', { name: equipe, created_by: 1, updated_by: 1 });
+        const { data, status } = await api.post('/team', { name: equipe, created_by: getId(), updated_by: getId() });
         setEquipeId(data.data.id);
         if (status === 201) {
             alert.success(data.message);
@@ -48,8 +50,8 @@ const DriverModal = ({ show, setShow, ranks, teams, title, isEdit, loadTeams }) 
             const driver = {
                 name: name,
                 // idTeam: equipeId || team.key,
-                created_by: 1,
-                updated_by: 1
+                created_by: getId(),
+                updated_by: getId()
             }
 
 
@@ -62,8 +64,8 @@ const DriverModal = ({ show, setShow, ranks, teams, title, isEdit, loadTeams }) 
                 const {data: data2, status: status2} = await api.post(
                     `/driver/${data.data.id}/team/${equipeId || team.key}/season/${season[0].id}?reserve=${reserve}`, 
                     {
-                        created_by: 1,
-                        updated_by: 1
+                        created_by: getId(),
+                        updated_by: getId()
                     }
                 )
                 alert.success(data.message);
