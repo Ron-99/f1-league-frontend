@@ -23,6 +23,9 @@ const LeftNav = ({ home, open, theme, themeToggler }) => {
                     <Item home={home} open={open} exact to="/" activeStyle={{ fontWeight: '600' }}>Início</Item>
                 </li>
                 <li>
+                    <Item home={home} open={open} to="/news" activeStyle={{ fontWeight: '600' }}>Notícias</Item>
+                </li>
+                <li>
                     <Item home={home} open={open} exact to="/classification" activeStyle={{ fontWeight: '600' }}>Corridas</Item>
                 </li>
                 <li>
