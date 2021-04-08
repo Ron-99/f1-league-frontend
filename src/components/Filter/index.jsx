@@ -8,10 +8,13 @@ const Filter = ({ranks, seasons, loadSeason, setRank, setSeason, setPage, isRace
     const [rank, rankInput, , rankRef] = useInput({type: 'select', id: 'rank', name: 'rank', data: ranks}) 
     const seasonRef = useRef('');
 
-    useEffect(() => {
-        handleChangeRank()
-    }, [rank])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(async() => {
+        await handleChangeRank();
+        // eslint-disable-next-line no-use-before-define
+    }, [handleChangeRank, rank])
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleChangeRank = async () => {
         if(rankRef.current){
             setRank(rankRef.current.value || '');

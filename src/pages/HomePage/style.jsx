@@ -32,6 +32,7 @@ export const Title = styled.div `
         text-align: center;
         color: dodgerblue;
         text-transform: uppercase;
+        font-weight: 500;
         @media (max-width: 768px) {
             font-size: 3rem;
         }

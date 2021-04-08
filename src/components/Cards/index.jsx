@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {List, Driver, Row, Column} from './style';
+import {List, Driver, Row} from './style';
 
 const Cards = ({ drivers, teams, isDrivers }) => (
     <List>

@@ -21,4 +21,8 @@ export const LastNews = styled.section `
     flex-direction: column;
     width: 70%;
     padding: 0 0 0 5%;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `

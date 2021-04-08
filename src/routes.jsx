@@ -13,6 +13,8 @@ import ClassificationDriverPage from './pages/ClassificationDriverPage';
 import ClassificationTeamPage from './pages/ClassificationTeamPage';
 import LoginPage from './pages/LoginPage';
 import NewsPage from './pages/NewsPage';
+import NewsInformationPage from './pages/NewsInformationPage';
+import NewArticlePage from './pages/NewArticlePage';
 import NotFound from './pages/NotFound';
 import Footer from './components/Footer';
 
@@ -39,7 +41,9 @@ const Routes = ({themeToggler, theme}) => (
         <HeaderCustom themeToggler={themeToggler} theme={theme}/>
         <Switch>
             <Route exact path='/' component={() => (<HomePage themeToggler={themeToggler} theme={theme} />)} />
-            <Route path='/news' component={NewsPage} />
+            <Route exact path='/news' component={NewsPage} />
+            <Route path='/news/:id' component={NewsInformationPage} />
+            <Route path='/article' component={NewArticlePage} />
             <Route exact path='/classification' component={ClassificationPage} />
             <Route exact path='/driver' component={DriversPage} />
             <Route path='/driver/:id' component={DriverPage} />
