@@ -49,7 +49,7 @@ export const ModalHeader = styled.div `
         color: white;
         float: right;
         font-size: 28px;
-        font-weight: bold;
+        font-weight: normal;
 
         &:hover, &:focus{
             color: rgb(190, 190, 190);
@@ -81,7 +81,7 @@ export const Field = styled.div `
     flex-direction: column;
     margin: 5%;
     label{
-        font-family: 'Lato';
+        font-family: 'Lato',monospace;
         font-weight: 400;
     }
     input{
@@ -91,7 +91,7 @@ export const Field = styled.div `
         border-radius: 5px;
         padding: 10px;
         outline: none;
-        font-family: 'Lato';
+        font-family: 'Lato',monospace;
         font-weight: 400;
         margin-top: 10px;
     }

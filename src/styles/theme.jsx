@@ -4,7 +4,8 @@ export const lightTheme = {
     toggleBorder: '#FFF',
     background: '#fff',
     secondBackground: '#f9f9f9',
-    body: '#424242'
+    body: '#eeeeee',
+    primary: '#f53051'
 }
 export const darkTheme = {
     text: '#fff',
@@ -12,5 +13,6 @@ export const darkTheme = {
     toggleBorder: '#444',
     background: '#222',
     secondBackground: '#393939',
-    body: '#333'
+    body: '#333',
+    primary: '#f53051'
 }

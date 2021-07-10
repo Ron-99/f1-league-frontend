@@ -59,7 +59,7 @@ const DriversPage = () => {
 
     return(
         <>
-            <DriverModal loadTeams={loadTeams} isEdit={false} show={show} setShow={setShow} title={"Cadastrar piloto"} teams={teams} ranks={ranks} />
+            <DriverModal loadTeams={loadTeams} drivers={drivers} isEdit={false} show={show} setShow={setShow} title={"Cadastrar piloto"} teams={teams} ranks={ranks} />
             <Search param={param} setParam={setParam} placeholder="Procurar piloto..."/>
             <Cards drivers={drivers} isDrivers={true}/>
             {

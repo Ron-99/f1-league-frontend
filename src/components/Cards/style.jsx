@@ -35,7 +35,7 @@ export const List = styled.div`
 
     article{
         background: ${({theme}) => theme.background};
-        border: 1px solid ${({theme}) => theme.toggleBorder};
+        // border: 1px solid ${({theme}) => theme.toggleBorder};
         border-radius: 5px;
         padding: 20px;
         margin-bottom: 20px;
@@ -48,7 +48,7 @@ export const List = styled.div`
 
         strong{
             color: ${({ theme }) => theme.text};
-            font-weight: bold;
+            font-weight: normal;
         }
 
         p{
@@ -67,7 +67,7 @@ export const Driver = styled(Link)`
     background: none;
     margin-top: 10px;
     color: ${({theme}) => theme.text};
-    font-weight: bold;
+    font-weight: normal;
     font-size: 16px;
     text-decoration: none;
     display: flex;
@@ -76,7 +76,8 @@ export const Driver = styled(Link)`
     width: 100%;
 
     &:hover{
-        background: #ccc;
+        background: ${({theme}) => theme.primary};
+        border: 2px solid ${({theme}) => theme.primary};
         color: #fff;
     }
 `
