@@ -16,6 +16,7 @@ const DriversPage = () => {
 
     const [param, setParam] = useState("");
     const [drivers, setDrivers] = useState([]);
+    const [drivers2, setDrivers2] = useState([]);
     const [show, setShow] = useState(false);
     const [teams, setTeams] = useState([]);
     const [ranks, setRanks] = useState([]);
@@ -42,6 +43,15 @@ const DriversPage = () => {
         }
     }
 
+    const loadDrivers2 = async() => {
+        try{
+            const {data} = await api.get(`/driver?all=true`);
+            setDrivers2(data);
+        }catch(error){
+            console.error(error);
+        }
+    }
+
     const loadRanks = async() => {
         try{
             const {data} = await api.get(`/rank`);
@@ -54,12 +64,13 @@ const DriversPage = () => {
     const newDriver = async() => {
         await loadTeams();
         await loadRanks();
+        await loadDrivers2();
         setShow(true);
     }
 
     return(
         <>
-            <DriverModal loadTeams={loadTeams} drivers={drivers} isEdit={false} show={show} setShow={setShow} title={"Cadastrar piloto"} teams={teams} ranks={ranks} />
+            <DriverModal loadTeams={loadTeams} drivers={drivers2} isEdit={false} show={show} setShow={setShow} title={"Cadastrar piloto"} teams={teams} ranks={ranks} />
             <Search param={param} setParam={setParam} placeholder="Procurar piloto..."/>
             <Cards drivers={drivers} isDrivers={true}/>
             {
