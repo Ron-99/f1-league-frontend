@@ -56,7 +56,7 @@ export const TableContent = styled.table`
             color: ${({theme}) => theme.text};
             display: none;
             font-size: 10px;
-            font-weight: bold;
+            font-weight: normal;
             padding: 5px;
             position: absolute;
             text-transform: uppercase;

@@ -43,7 +43,7 @@ export const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  box-shadow: 1px 2px 4px 1px rgb(0 0 0 / 20%);
 `
 
 export const Ul = styled.ul`
@@ -76,27 +76,48 @@ export const Item = styled(NavLink)`
     cursor: pointer;
     transition: 0.5s;
     text-decoration: none;
+    font-weight: normal;
     color: ${({ home, open, theme }) => home ? '#fff' : open ? '#fff' : theme.text};
     &:hover{
-        font-weight: 600;
+        color: #E1306C;
     }
 `
 
 export const Logout = styled.p `
   cursor: pointer;
-    transition: 0.5s;
-    text-decoration: none;
-    color: ${({ home, open, theme }) => home ? '#fff' : open ? '#fff' : theme.text};
-    &:hover{
-        font-weight: 600;
-    }
+  transition: 0.5s;
+  text-decoration: none;
+  color: ${({ home, open, theme }) => home ? '#fff' : open ? '#fff' : theme.text};
+  &:hover{
+      font-weight: 600;
+  }
 `
 
 export const Left = styled.div `
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 40%;
+  
+  .home{
+    img{
+      width: 25%;
+    }
+  }
+  
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 50vh;
+    flex-direction: column;
+  }
+`
+
+export const Center = styled.div `
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
 
   @media (max-width: 768px) {
     width: 100%;

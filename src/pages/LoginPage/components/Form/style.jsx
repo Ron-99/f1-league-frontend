@@ -47,7 +47,7 @@ export const Field = styled.div `
     margin: 2%;
     width: 100%;
     label{
-        font-family: 'Lato';
+        font-family: 'Lato',monospace;
         font-weight: 600;
         color: ${({ theme }) => theme.text};
     }
@@ -58,7 +58,7 @@ export const Field = styled.div `
         border-radius: 5px;
         padding: 10px;
         outline: none;
-        font-family: 'Lato';
+        font-family: 'Lato',monospace;
         font-weight: 400;
         margin-top: 10px;
     }
