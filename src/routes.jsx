@@ -14,6 +14,7 @@ import ClassificationTeamPage from './pages/ClassificationTeamPage';
 import LoginPage from './pages/LoginPage';
 import NotFound from './pages/NotFound';
 import Footer from './components/Footer';
+import RegisterPage from "./pages/RegisterPage";
 
 const HeaderCustom = ({themeToggler, theme}) => {
     const location = useLocation().pathname;
@@ -23,6 +24,11 @@ const HeaderCustom = ({themeToggler, theme}) => {
         <Nav theme={theme} themeToggler={themeToggler}/>
     )
 };
+
+const NotAuthenticated = ({path, component}) => {
+  if(!isAuthenticated())
+    return <Route path={path} component={component}/>
+}
 
 const FooterCustom = () => {
     const location = useLocation().pathname;
@@ -43,14 +49,8 @@ const Routes = ({themeToggler, theme}) => (
             <Route path='/driver/:id' component={DriverPage} />
             <Route path='/classification/driver' component={ClassificationDriverPage} />
             <Route path='/classification/team' component={ClassificationTeamPage} />
-            {
-
-                !isAuthenticated()
-                    ?
-                    <Route path='/login' component={LoginPage} />
-                    :
-                    ""
-            }
+            <NotAuthenticated path='/D56B699830E77BA53855679CB1D252DA' component={LoginPage} />
+            <NotAuthenticated path='/register' component={RegisterPage} />
             <Route path='*' component={NotFound} />
 
 

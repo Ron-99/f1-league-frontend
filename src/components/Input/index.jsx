@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 
 import InputMask from 'react-input-mask';
 
-function useInput({type, className, id, name, min, max, data, mask}){
+function useInput({type, className, id, name, min, max, data, mask, placeholder}){
     const [value, setValue] = useState(null);
     const inputRef = useRef(null);
     let input; 
@@ -27,7 +27,7 @@ function useInput({type, className, id, name, min, max, data, mask}){
     }
     
     if(type === "text" || type === "number" || type === "date" || type === "password" || type === "email")
-        input = <input value={value} ref={inputRef} className={className} id={id} name={name} min={min} max={max} onChange={handleChangeInput} type={type} />;
+        input = <input value={value} ref={inputRef} className={className} id={id} name={name} min={min} max={max} onChange={handleChangeInput} type={type} placeholder={placeholder} />;
     else if(type === "select"){
         input = (<select ref={inputRef} name={name} id={id} onChange={handleChangeSelect}>
                     {
@@ -39,7 +39,7 @@ function useInput({type, className, id, name, min, max, data, mask}){
     }else if(type === "mask"){
         input = <InputMask ref={inputRef} id={id} name={name}  value={value} onChange={handleChangeInput} mask={mask}/> ;
     }else if(type === "checkbox"){
-        input = <input value={value} ref={inputRef} className={className} id={id} name={name} min={min} max={max} onChange={handleChangeCheck} type={type} />;
+        input = <input value={value} ref={inputRef} className={className} id={id} name={name} min={min} max={max} onChange={handleChangeCheck} type={type} placeholder={placeholder} />;
     }
     return [(type === 'checkbox' ? value ? value : false : value), input, setValue, inputRef];
 }

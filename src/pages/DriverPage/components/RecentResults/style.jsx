@@ -6,7 +6,7 @@ export const TitleProfile = styled.h1 `
     margin: 2% 1.5% 1% 1.5%;
     color: ${({ theme }) => theme.text};
     font-size: 0.8rem;
-    font-weight: bold;
+    font-weight: normal;
     text-transform: uppercase;
 `
 
@@ -61,7 +61,7 @@ export const RecentResultsTable = styled.table `
             color: ${({theme}) => theme.text};
             display: none;
             font-size: 10px;
-            font-weight: bold;
+            font-weight: normal;
             padding: 5px;
             position: absolute;
             text-transform: uppercase;

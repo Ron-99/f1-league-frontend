@@ -4,8 +4,8 @@ import {List, Driver, Row, Column} from './style';
 
 const Cards = ({ drivers, teams, isDrivers }) => (
     <List>
+        {console.log(drivers)}
         {
-            isDrivers ?
                 drivers.map(driver => (
                     <article key={driver.id}>
                         <Row>
@@ -20,14 +20,6 @@ const Cards = ({ drivers, teams, isDrivers }) => (
                         <Row>
                             <Driver to={`/driver/${driver.id}`}>Acessar</Driver>
                         </Row>
-                    </article>
-                ))
-                :
-                teams.map(team => (
-                    <article key={team._id}>
-                        <strong>{team.name}</strong>
-
-                        <Driver to={`/team/${team._id}`}>Acessar</Driver>
                     </article>
                 ))
         }

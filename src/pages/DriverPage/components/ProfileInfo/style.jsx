@@ -18,7 +18,7 @@ export const Data = styled.div `
     width: 100%;
 
     h1{
-        color: #fff;
+        color: ${({theme}) => theme.text};
     }
 
     h3{
@@ -43,7 +43,7 @@ export const Medal = styled.div `
     width: 40px;
 
     span{
-        color: #fff;
+        color: ${({theme}) => theme.text};
     }
 `
 

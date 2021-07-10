@@ -23,7 +23,8 @@ export const Date = styled.div `
 
         &:hover{
             color: #fff;
-            background: #e0dfdf;
+            background: ${({theme}) => theme.primary};
+            border: 1px solid  ${({theme}) => theme.primary};
         }
     }
 `

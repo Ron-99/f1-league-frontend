@@ -4,7 +4,7 @@ import {getToken, getEmail} from './auth';
 
 // PRD
 const api = axios.create({
-    baseURL: "https://api.e-racebrasil.com.br"
+     baseURL: "https://api.e-racebrasil.com.br"
 });
 
 // STG
@@ -13,9 +13,9 @@ const api = axios.create({
 // });
 
 // DEV
-// const api = axios.create({
-//     baseURL: "http://localhost:3333"
-// });
+//const api = axios.create({
+//    baseURL: "http://localhost:3333"
+///});
 
 api.interceptors.request.use(async config => {
     const token = getToken();

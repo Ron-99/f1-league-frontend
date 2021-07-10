@@ -13,7 +13,7 @@ import useInput from '../Input'
 
 import { Fields, ModalBody, ModalContent, ModalFooter, ModalForm, ModalHeader, Field, New, Minus, Button } from './style';
 
-const DriverModal = ({ show, setShow, ranks, teams, title, isEdit, loadTeams }) => {
+const DriverModal = ({ show, setShow, ranks, teams, drivers, title, isEdit, loadTeams }) => {
 
     const [name, nameInput, setName, refName] = useInput({ type: 'text', id: 'name', name: 'name' });
     const [rank, rankInput, setRank] = useInput({ type: 'select', id: 'rank', name: 'rank', data: ranks });
@@ -21,6 +21,7 @@ const DriverModal = ({ show, setShow, ranks, teams, title, isEdit, loadTeams }) 
     const [reserve, reserveInput, setReserve] = useInput({ type: 'checkbox', name: 'reserve', id: 'reserve'})
     const [equipeId, setEquipeId] = useState('');
     const [team, setTeam] = useState('');
+    const [driver, setDriver] = useState('');
     const [newTeam, setNewTeam] = useState(false);
     const alert = useAlert();
 
@@ -46,42 +47,36 @@ const DriverModal = ({ show, setShow, ranks, teams, title, isEdit, loadTeams }) 
     }
 
     const save = async () => {
-        if (name !== '' && (equipeId !== '' || team !== '')) {
-            const driver = {
-                name: name,
-                // idTeam: equipeId || team.key,
-                created_by: getId(),
-                updated_by: getId()
-            }
-
-
+        if (name !== '' && (equipeId !== '' || team !== '')) {       
             
-
-            const { data, status } = await api.post(`/driver`, driver);
-            if (status === 201) {
-                const {data:season} = await api.get(`/season/rank/${rank || rankInput.props.children[0].key}`);
-                console.log(equipeId || team.key)
-                const {data: data2, status: status2} = await api.post(
-                    `/driver/${data.data.id}/team/${equipeId || team.key}/season/${season[0].id}?reserve=${reserve}`, 
-                    {
-                        created_by: getId(),
-                        updated_by: getId()
-                    }
-                )
-                alert.success(data.message);
-                console.log(data2.data)
-                clearFields();
-            }
+            const {data:season} = await api.get(`/season/rank/${rank || rankInput.props.children[0].key}`);
+            console.log(equipeId || team.key)
+            const {data: data2} = await api.post(
+                `/driver/${driver.key}/team/${equipeId || team.key}/season/${season[0].id}?reserve=${reserve}`, 
+                {
+                    created_by: getId(),
+                    updated_by: getId()
+                }
+            )
+            console.log(data2.data)
+            clearFields();
+            
         } else {
             alert.show('Por favor preencha todos os campos');
         }
     }
 
-    const onSelect = useCallback((selectedItem) => {
+    const onSelectTeams = useCallback((selectedItem) => {
+        
         setTeam(selectedItem);
     }, []);
 
-    const items = useMemo(
+    const onSelectDriver = useCallback((selectedItem) => {
+        console.log(selectedItem);
+        setDriver(selectedItem);
+    }, []);
+
+    const itemsTeams = useMemo(
         () =>
             teams.map((team) => ({
                 label: team.name,
@@ -89,6 +84,16 @@ const DriverModal = ({ show, setShow, ranks, teams, title, isEdit, loadTeams }) 
                 ...team,
             })),
         [teams]
+    );
+
+    const itemsDrivers = useMemo(
+        () =>
+            drivers.map((driver) => ({
+                label: driver.driver,
+                key: driver.id, 
+                ...driver,
+            })),
+        [drivers]
     );
 
     const clearFields = () => {
@@ -117,7 +122,12 @@ const DriverModal = ({ show, setShow, ranks, teams, title, isEdit, loadTeams }) 
                                 <Fields>
                                     <Field>
                                         <label htmlFor="name">Nome</label>
-                                        {nameInput}
+                                        <DataListInput
+                                                    placeholder="Selecione o piloto..."
+                                                    items={itemsDrivers}
+                                                    onSelect={onSelectDriver}
+
+                                                />
                                     </Field>
 
                                     <Field>
@@ -127,8 +137,8 @@ const DriverModal = ({ show, setShow, ranks, teams, title, isEdit, loadTeams }) 
                                                 ?
                                                 <DataListInput
                                                     placeholder="Selecione a equipe..."
-                                                    items={items}
-                                                    onSelect={onSelect}
+                                                    items={itemsTeams}
+                                                    onSelect={onSelectTeams}
 
                                                 />
                                                 :

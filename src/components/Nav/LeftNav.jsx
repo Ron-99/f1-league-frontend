@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { isAuthenticated, logout } from '../../services/auth';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,33 +8,49 @@ import { faLightbulb as LightBlack } from '@fortawesome/free-solid-svg-icons';
 import { faLightbulb as LightWhite } from '@fortawesome/free-regular-svg-icons';
 import ToggleButton from 'react-toggle-button'
 
-import { Item, Ul, Right, Left, Logout } from './style';
+import { Item, Ul, Right, Left, Logout, Center } from './style';
+import caracolgif from '../../assets/img/caracol.gif';
+import caracol from '../../assets/img/caracol.png';
 
 const LeftNav = ({ home, open, theme, themeToggler }) => {
 
     const history = useHistory();
-    const [self, setSef] = useState(theme === "light"? true : false)
+    const [self, setSef] = useState(theme === "light")
+    const [animated, setAnimated] = useState(false);
+
+    const handleMouseOver = () => {
+        setAnimated(true)
+    }
+    const handleMouseLeave = () => {
+        setAnimated(false)
+    }
 
     return (
         <Ul open={open}>
 
-            <Left>
+          <Left>
+              <Link to='/' className="home">
+                <img onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} src={animated ? caracolgif : caracol} alt=""/>
+              </Link>
+          </Left>
+
+            <Center>
                 <li>
-                    <Item home={home} open={open} exact to="/" activeStyle={{ fontWeight: '600' }}>Início</Item>
+                    <Item home={home} open={open} exact to="/" activeStyle={{ color: '#E1306C' }}>Início</Item>
                 </li>
                 <li>
-                    <Item home={home} open={open} exact to="/classification" activeStyle={{ fontWeight: '600' }}>Corridas</Item>
+                    <Item home={home} open={open} exact to="/classification" activeStyle={{ color: '#E1306C' }}>Corridas</Item>
                 </li>
                 <li>
-                    <Item home={home} open={open} to="/classification/driver" activeStyle={{ fontWeight: '600' }}>Classificação</Item>
+                    <Item home={home} open={open} to="/classification/driver" activeStyle={{ color: '#E1306C' }}>Classificação</Item>
                 </li>
                 <li>
-                    <Item home={home} open={open} to="/classification/team" activeStyle={{ fontWeight: '600' }}>Construtores</Item>
+                    <Item home={home} open={open} to="/classification/team" activeStyle={{ color: '#E1306C' }}>Construtores</Item>
                 </li>
                 <li>
-                    <Item home={home} open={open} to="/driver" activeStyle={{ fontWeight: '600' }}>Pilotos</Item>
+                    <Item home={home} open={open} to="/driver" activeStyle={{ color: '#E1306C' }}>Pilotos</Item>
                 </li>
-            </Left>
+            </Center>
 
             <Right>
                 <ToggleButton
@@ -52,8 +68,8 @@ const LeftNav = ({ home, open, theme, themeToggler }) => {
                           hover: 'rgb(95,96,98)',
                         },
                         inactive: {
-                          base: '#1e90ff',
-                          hover: 'rgb(70, 162, 253)',
+                          base: 'rgba(245,48,81,1)',
+                          hover: 'rgb(243,90,114)',
                         }
                       }}
                     value={self}
@@ -70,7 +86,7 @@ const LeftNav = ({ home, open, theme, themeToggler }) => {
                         </li>
                         :
                         <li>
-                            <Item home={home} open={open} to="/login" activeStyle={{ fontWeight: '600' }}>Entrar</Item>
+                            <Item home={home} open={open} to="/register" activeStyle={{ fontWeight: '600' }}>Inscrever-se</Item>
                         </li>
                 }
                 {/* <li>

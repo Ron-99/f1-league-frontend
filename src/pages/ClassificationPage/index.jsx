@@ -45,12 +45,12 @@ const ClassificationPage = () => {
 
     const alert = useAlert();
 
-    useEffect(() => {
-        loadRanks();
-        loadDates();
-        loadTracks();
-        loadDrivers();
-        loadClassification();
+    useEffect(async () => {
+        await loadRanks();
+        await loadDates();
+        await loadTracks();
+        await loadDrivers();
+        await loadClassification();
     }, [rank, season, date])
 
     const loadClassification = async () => {

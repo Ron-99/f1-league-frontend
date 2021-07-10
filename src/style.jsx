@@ -7,9 +7,10 @@ export const GlobalStyle = createGlobalStyle`
         vertical-align:baseline;
         list-style:none;
         border:0;
-        font-family: monospace, sans-serif;
     }
     body{
         background:${({ theme }) => theme.background};
+        font-family: 'Lato', monospace;
+      font-weight: 300;
     }
 `
