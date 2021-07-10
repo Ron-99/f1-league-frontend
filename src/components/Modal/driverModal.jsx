@@ -89,7 +89,7 @@ const DriverModal = ({ show, setShow, ranks, teams, drivers, title, isEdit, load
     const itemsDrivers = useMemo(
         () =>
             drivers.map((driver) => ({
-                label: driver.driver,
+                label: driver.name,
                 key: driver.id, 
                 ...driver,
             })),
