@@ -27,7 +27,6 @@ const DriverModal = ({ show, setShow, ranks, teams, drivers, title, isEdit, load
 
     useEffect(() => {
         handleInput();
-        console.log(drivers);
     }, [show])
 
     const handleInput = () => {
